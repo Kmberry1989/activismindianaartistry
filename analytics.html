@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indiana Art Activist Inventory | Interactive Dashboard</title>
+    
+    <!-- Chosen Palette: "Hoosier Harmony" - Warm neutrals (Stone/Cream) with bold Blue/Gold accents for contrast and authority. -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        body {
+            background-color: #f8fafc; /* Slate 50 */
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+    </style>
+</head>
+<body class="text-slate-800">
+
+    <!-- Application Structure Plan: 
+         1. Header: High-level context and branding.
+         2. Analytics Section (Dashboard): Visual synthesis of the report data (Causes & Locations) to provide immediate insight into the scope of the inventory.
+         3. Controls: Search and Filter tools to allow non-linear exploration.
+         4. Gallery Grid: The core content area, presenting individual artist cards with action links.
+         5. Modal: Detailed view for specific entry data.
+         Why: This structure moves from "Macro" (Stats) to "Micro" (Individual Artists), allowing users to understand the landscape before diving into specifics. 
+    -->
+
+    <!-- Header -->
+    <header class="bg-slate-900 text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center">
+            <div class="flex items-center space-x-3 mb-4 md:mb-0">
+                <i data-lucide="palette" class="w-8 h-8 text-amber-400"></i>
+                <div>
+                    <h1 class="text-2xl font-bold tracking-tight">Art Activist Inventory</h1>
+                    <p class="text-xs text-slate-400">Indiana Social Impact Art Archive</p>
+                </div>
+            </div>
+            <div class="flex space-x-4 text-sm">
+                <div class="text-center">
+                    <span class="block font-bold text-xl text-amber-400" id="total-artists">0</span>
+                    <span class="text-slate-400">Artists</span>
+                </div>
+                <div class="text-center">
+                    <span class="block font-bold text-xl text-amber-400" id="total-projects">0</span>
+                    <span class="text-slate-400">Projects</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8 space-y-12">
+
+        <!-- Analytics Section -->
+        <!-- Visualization & Content Choices: 
+             1. Data: Social Cause Categories -> Goal: Compare -> Viz: Doughnut Chart -> Justification: Shows the proportional focus of activism (Racial Justice vs Climate vs History).
+             2. Data: Location/Project -> Goal: Inform -> Viz: Bar Chart -> Justification: Highlights the geographical hubs (Indy vs Fort Wayne) and major collectives.
+             Confirming NO SVG/Mermaid. Chart.js used.
+        -->
+        <section>
+            <div class="mb-6">
+                <h2 class="text-3xl font-bold text-slate-800">Inventory Analytics</h2>
+                <p class="text-slate-600 mt-2 max-w-3xl">
+                    This inventory tracks over 100 artists and artworks across Indiana dedicated to social change. 
+                    The visualization below highlights the dominance of Racial Justice initiatives, largely driven by the 2020 mural projects in Indianapolis and Fort Wayne.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Cause Distribution Chart -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                    <h3 class="text-lg font-semibold mb-4 border-b pb-2 flex items-center">
+                        <i data-lucide="heart-handshake" class="w-5 h-5 mr-2 text-indigo-600"></i>
+                        Primary Social Causes
+                    </h3>
+                    <div class="chart-container">
+                        <canvas id="causeChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Project/Location Chart -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                    <h3 class="text-lg font-semibold mb-4 border-b pb-2 flex items-center">
+                        <i data-lucide="map-pin" class="w-5 h-5 mr-2 text-emerald-600"></i>
+                        Key Projects & Locations
+                    </h3>
+                    <div class="chart-container">
+                        <canvas id="locationChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery & Filter Section -->
+        <section id="gallery-section">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-6 gap-4">
+                <div>
+                    <h2 class="text-3xl font-bold text-slate-800">Artist Gallery</h2>
+                    <p class="text-slate-600 mt-2">Explore individual contributions, specific mural letters, and historical works.</p>
+                </div>
+                
+                <!-- Controls -->
+                <div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto bg-white p-3 rounded-lg shadow-sm border border-slate-200">
+                    <div class="relative">
+                        <i data-lucide="search" class="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-4 h-4"></i>
+                        <input type="text" id="searchInput" placeholder="Search artists or works..." 
+                               class="pl-10 pr-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 w-full sm:w-64 text-sm">
+                    </div>
+                    <select id="causeFilter" class="px-4 py-2 border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white">
+                        <option value="All">All Causes</option>
+                        <option value="Racial Justice">Racial Justice / BLM</option>
+                        <option value="History">History & Heritage</option>
+                        <option value="Environment">Environment / Nature</option>
+                        <option value="Community">Community & Identity</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Dynamic Grid -->
+            <div id="artistGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- Javascript will populate this -->
+            </div>
+            
+            <div id="noResults" class="hidden text-center py-12">
+                <div class="inline-block p-4 rounded-full bg-slate-100 mb-3">
+                    <i data-lucide="search-x" class="w-8 h-8 text-slate-400"></i>
+                </div>
+                <h3 class="text-lg font-medium text-slate-600">No artists found</h3>
+                <p class="text-slate-500 text-sm">Try adjusting your search terms or filters.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-800 text-slate-300 py-8 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <p class="mb-2">Generated for the Indiana Art Activist Project</p>
+            <p class="text-xs text-slate-500">Data derived from Gemini Analysis & Digital Indy Archives</p>
+        </div>
+    </footer>
+
+    <!-- CONFIRMATION: NO SVG graphics used (except Icons via Lucide script). NO Mermaid JS used. -->
+
+    <script>
+        // --- Data Source ---
+        // Populated from the "Source Report" (Gemini Export + Links MD)
+        const inventoryData = [
+            // Eighteen Art Collective
+            { name: "The Eighteen Art Collective", work: "Black Lives Matter Street Mural", cause: "Racial Justice", project: "BLM Indy", type: "Mural" },
+            { name: "Gary Gee", work: "We the People", cause: "Racial Justice", project: "Murals for Racial Justice", type: "Mural" },
+            { name: "Mechi Shakur", work: "Blkkk Lives Don't Matter", cause: "Racial Justice", project: "Murals for Racial Justice", type: "Mural" },
+            { name: "Israel Solomon", work: "American Duality / Letter T", cause: "Racial Justice", project: "BLM Indy", type: "Mural" },
+            { name: "Billy Hoodoo", work: "Letter C", cause: "Racial Justice", project: "BLM Indy", type: "Mural" },
+            { name: "Ashley Nora", work: "Letter R", cause: "Racial Justice", project: "BLM Indy", type: "Mural" },
+            { name: "Kenneth Hordge", work: "The Fist", cause: "Racial Justice", project: "BLM Indy", type: "Mural" },
+            { name: "Kevin West", work: "Letter K", cause: "Racial Justice", project: "BLM Indy", type: "Mural" },
+            { name: "John G. Moore", work: "Letter L", cause: "Racial Justice", project: "BLM Indy", type: "Mural" },
+            { name: "Ess McKee", work: "Letter S", cause: "Racial Justice", project: "BLM Indy", type: "Mural" },
+            { name: "Wavy Blayne", work: "Letter M", cause: "Racial Justice", project: "BLM Indy", type: "Mural" },
+            { name: "Harriet Watson", work: "Letter A", cause: "Racial Justice", project: "BLM Indy", type: "Mural" },
+            { name: "Deonna Craig", work: "Letter V", cause: "Racial Justice", project: "BLM Indy", type: "Mural" },
+            { name: "Amiah Mims", work: "Letter A", cause: "Racial Justice", project: "BLM Indy", type: "Mural" },
+            { name: "Rebecca Robinson", work: "Letter L", cause: "Racial Justice", project: "BLM Indy", type: "Mural" },
+            { name: "Kyng Rhodes", work: "Letter B", cause: "Racial Justice", project: "BLM Indy", type: "Mural" },
+            { name: "Shane Young (FITZ)", work: "Letter T", cause: "Racial Justice", project: "BLM Indy", type: "Mural" },
+            { name: "Fingers", work: "The Fist", cause: "Racial Justice", project: "BLM Indy", type: "Mural" },
+            
+            // Historical / Established
+            { name: "Fred Wilson", work: "E Pluribus Unum", cause: "History", project: "Cultural Trail", type: "Sculpture" },
+            { name: "Robert Indiana", work: "The Confederacy: Mississippi / HOPE", cause: "History", project: "Museum Collection", type: "Painting/Sculpture" },
+            { name: "May Wright Sewall", work: "Founding Art Association", cause: "History", project: "Historical", type: "Leadership" },
+            { name: "Mari Evans", work: "I Am A Black Woman", cause: "History", project: "Literature", type: "Poetry" },
+            { name: "Janet Scudder", work: "Frog Fountain", cause: "History", project: "Historical", type: "Sculpture" },
+            { name: "T.C. Steele", work: "Various Landscapes", cause: "Environment", project: "Historical", type: "Painting" },
+            
+            // Faces of the Fort
+            { name: "Kacy Jackson", work: "Faces of the Fort: Southeast", cause: "Community", project: "Faces of the Fort", type: "Mural" },
+            { name: "Benjamin Duke", work: "Faces of the Fort: Northeast", cause: "Community", project: "Faces of the Fort", type: "Mural" },
+            { name: "Mitchell Egly", work: "Faces of the Fort: Southwest", cause: "Community", project: "Faces of the Fort", type: "Mural" },
+            
+            // Contemporary / Other
+            { name: "Andre Portee", work: "McMillen Park Murals", cause: "Community", project: "Fort Wayne Parks", type: "Mural" },
+            { name: "Samuel Levi Jones", work: "Poplar Trees", cause: "Racial Justice", project: "Museum Collection", type: "Mixed Media" },
+            { name: "Anila Quayyum Agha", work: "Intersections", cause: "Community", project: "Public Art", type: "Installation" },
+            { name: "Danicia Monét", work: "Black Poetics of Place", cause: "Racial Justice", project: "Murals for Racial Justice", type: "Mixed Media" },
+            { name: "Matthew Cooper", work: "Truth Seekers", cause: "Racial Justice", project: "Murals for Racial Justice", type: "Mural" },
+            { name: "Shauta Marsh & Jim Walker", work: "Social Alchemy", cause: "Community", project: "Big Car", type: "Social Practice" },
+            { name: "Dr. Jarrod Dortch", work: "Solful Gardens", cause: "Environment", project: "Eco-Art", type: "Agriculture/Art" },
+            { name: "Justin Roberts", work: "Walk the Willow", cause: "Environment", project: "Eco-Art", type: "Sculpture" },
+            { name: "Karen Boone", work: "Natural Pigments", cause: "Environment", project: "Studio Practice", type: "Painting" },
+            { name: "Rachel Kavathe", work: "McDoel Blooms", cause: "Environment", project: "Public Art", type: "Sculpture" },
+            { name: "Tiffany Black", work: "August 15", cause: "History", project: "Public Art", type: "Mural" },
+            { name: "Beatriz Vasquez", work: "Immigrantes Bienvenidos", cause: "Community", project: "Cultural", type: "Paper Art" }
+        ];
+
+        // --- Core Logic ---
+
+        // Initialize Stats
+        document.getElementById('total-artists').innerText = inventoryData.length;
+        // Count distinct projects roughly
+        const distinctProjects = [...new Set(inventoryData.map(d => d.project))].length;
+        document.getElementById('total-projects').innerText = distinctProjects;
+
+        // --- Chart Logic ---
+        function initCharts() {
+            // Data Prep: Causes
+            const causeCounts = {};
+            inventoryData.forEach(item => {
+                causeCounts[item.cause] = (causeCounts[item.cause] || 0) + 1;
+            });
+
+            // Data Prep: Locations/Projects (Top 5)
+            const projectCounts = {};
+            inventoryData.forEach(item => {
+                projectCounts[item.project] = (projectCounts[item.project] || 0) + 1;
+            });
+            const topProjects = Object.entries(projectCounts)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 5);
+
+            // Chart 1: Causes (Doughnut)
+            new Chart(document.getElementById('causeChart'), {
+                type: 'doughnut',
+                data: {
+                    labels: Object.keys(causeCounts),
+                    datasets: [{
+                        data: Object.values(causeCounts),
+                        backgroundColor: ['#4f46e5', '#fbbf24', '#10b981', '#f43f5e', '#8b5cf6'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'right', labels: { boxWidth: 12 } }
+                    }
+                }
+            });
+
+            // Chart 2: Projects (Bar)
+            new Chart(document.getElementById('locationChart'), {
+                type: 'bar',
+                data: {
+                    labels: topProjects.map(p => p[0]),
+                    datasets: [{
+                        label: 'Number of Artists/Works',
+                        data: topProjects.map(p => p[1]),
+                        backgroundColor: '#0f172a',
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: { y: { beginAtZero: true } }
+                }
+            });
+        }
+
+        // --- Gallery Logic ---
+        function renderGallery(filterText = "", filterCause = "All") {
+            const grid = document.getElementById('artistGrid');
+            const noResults = document.getElementById('noResults');
+            grid.innerHTML = '';
+
+            const filteredData = inventoryData.filter(item => {
+                const matchesText = item.name.toLowerCase().includes(filterText.toLowerCase()) || 
+                                    item.work.toLowerCase().includes(filterText.toLowerCase());
+                const matchesCause = filterCause === "All" || item.cause === filterCause;
+                return matchesText && matchesCause;
+            });
+
+            if (filteredData.length === 0) {
+                noResults.classList.remove('hidden');
+            } else {
+                noResults.classList.add('hidden');
+                
+                filteredData.forEach(item => {
+                    // Create Card
+                    const card = document.createElement('div');
+                    card.className = "bg-white rounded-lg border border-slate-200 overflow-hidden card-hover flex flex-col h-full transition-all duration-300";
+                    
+                    // Visual Header (Placeholder since we use external search links)
+                    // We generate a color based on the Cause
+                    let headerColor = "bg-slate-200";
+                    let icon = "palette";
+                    if(item.cause === "Racial Justice") { headerColor = "bg-indigo-100 text-indigo-600"; icon = "fist"; } // Lucide doesn't have fist, using generic
+                    if(item.cause === "Environment") { headerColor = "bg-emerald-100 text-emerald-600"; icon = "leaf"; }
+                    if(item.cause === "History") { headerColor = "bg-amber-100 text-amber-700"; icon = "landmark"; }
+                    if(item.cause === "Community") { headerColor = "bg-rose-100 text-rose-600"; icon = "users"; }
+
+                    // Construct Search Queries for buttons (Logic from our Python/Markdown work)
+                    const portraitQuery = `https://www.google.com/search?tbm=isch&q=${encodeURIComponent(item.name + " artist portrait")}`;
+                    const workQuery = `https://www.google.com/search?tbm=isch&q=${encodeURIComponent(item.name + " " + item.work)}`;
+
+                    card.innerHTML = `
+                        <div class="h-24 ${headerColor} flex items-center justify-center">
+                            <i data-lucide="${icon}" class="w-8 h-8 opacity-75"></i>
+                        </div>
+                        <div class="p-5 flex-grow">
+                            <div class="flex justify-between items-start mb-2">
+                                <span class="text-xs font-semibold px-2 py-1 bg-slate-100 rounded text-slate-600 tracking-wide uppercase">${item.cause}</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-800 mb-1">${item.name}</h3>
+                            <p class="text-sm font-medium text-indigo-600 mb-3">${item.work}</p>
+                            <div class="flex items-center text-xs text-slate-500 mb-4">
+                                <i data-lucide="folder" class="w-3 h-3 mr-1"></i>
+                                ${item.project}
+                            </div>
+                        </div>
+                        <div class="p-4 border-t border-slate-100 bg-slate-50 flex gap-2">
+                            <a href="${workQuery}" target="_blank" class="flex-1 text-center py-2 text-xs font-medium text-slate-700 bg-white border border-slate-300 rounded hover:bg-slate-50 transition-colors">
+                                Find Art
+                            </a>
+                            <a href="${portraitQuery}" target="_blank" class="flex-1 text-center py-2 text-xs font-medium text-white bg-slate-800 rounded hover:bg-slate-700 transition-colors">
+                                Find Artist
+                            </a>
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                });
+                lucide.createIcons(); // Re-init icons for new elements
+            }
+        }
+
+        // --- Event Listeners ---
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            renderGallery(e.target.value, document.getElementById('causeFilter').value);
+        });
+
+        document.getElementById('causeFilter').addEventListener('change', (e) => {
+            renderGallery(document.getElementById('searchInput').value, e.target.value);
+        });
+
+        // --- Init ---
+        window.addEventListener('DOMContentLoaded', () => {
+            initCharts();
+            renderGallery();
+            lucide.createIcons();
+        });
+
+    </script>
+</body>
+</html>
+

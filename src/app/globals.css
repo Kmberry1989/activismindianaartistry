@@ -1,0 +1,288 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* DEFAULT LIGHT (Inter) */
+    --font-sans: var(--font-inter);
+    --font-heading: var(--font-inter);
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 30%;
+    /* Darkened for accessibility */
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    /* DEFAULT DARK */
+    --font-sans: var(--font-inter);
+    --font-heading: var(--font-inter);
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 80%;
+    /* Lightened for accessibility in dark mode */
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+
+  /* SUGAR THEME (Sugar Cream Pie) */
+  .sugar {
+    --font-sans: var(--font-quicksand);
+    --font-heading: var(--font-fraunces);
+    --background: 43 50% 96%;
+    --foreground: 20 30% 25%;
+    --card: 43 60% 98%;
+    --card-foreground: 20 30% 25%;
+    --popover: 43 60% 98%;
+    --popover-foreground: 20 30% 25%;
+    --primary: 25 75% 45%;
+    --primary-foreground: 43 50% 96%;
+    --secondary: 45 90% 85%;
+    --secondary-foreground: 20 30% 25%;
+    --muted: 43 30% 90%;
+    --muted-foreground: 20 20% 50%;
+    --accent: 45 90% 85%;
+    --accent-foreground: 20 30% 25%;
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 43 50% 96%;
+    --border: 25 30% 80%;
+    --input: 25 30% 80%;
+    --ring: 25 75% 45%;
+  }
+
+  /* TULIPTREE THEME (State Tree) */
+  .tuliptree {
+    --font-sans: var(--font-lato);
+    --font-heading: var(--font-playfair);
+    --background: 80 30% 96%;
+    --foreground: 140 50% 15%;
+    --card: 80 30% 98%;
+    --card-foreground: 140 50% 15%;
+    --popover: 80 30% 98%;
+    --popover-foreground: 140 50% 15%;
+    --primary: 35 95% 55%;
+    --primary-foreground: 140 50% 15%;
+    --secondary: 90 40% 80%;
+    --secondary-foreground: 140 50% 15%;
+    --muted: 90 20% 90%;
+    --muted-foreground: 140 30% 40%;
+    --accent: 35 95% 55%;
+    --accent-foreground: 80 30% 96%;
+    --destructive: 0 60% 45%;
+    --destructive-foreground: 80 30% 96%;
+    --border: 90 30% 80%;
+    --input: 90 30% 80%;
+    --ring: 35 95% 55%;
+  }
+
+  /* CARDINAL THEME (State Bird: Red/Grey) */
+  .cardinal {
+    --font-sans: var(--font-source-sans);
+    --font-heading: var(--font-crimson);
+    /* Cool Grey Background */
+    --background: 210 20% 96%;
+    /* Charcoal Text */
+    --foreground: 220 20% 10%;
+
+    --card: 210 20% 98%;
+    --card-foreground: 220 20% 10%;
+    --popover: 210 20% 98%;
+    --popover-foreground: 220 20% 10%;
+
+    /* Vivid Cardinal Red */
+    --primary: 355 85% 55%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Slate/Grey Secondary */
+    --secondary: 215 25% 85%;
+    --secondary-foreground: 220 20% 10%;
+
+    --muted: 215 20% 90%;
+    --muted-foreground: 220 15% 45%;
+
+    --accent: 355 85% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 80% 40%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 215 25% 80%;
+    --input: 215 25% 80%;
+    --ring: 355 85% 55%;
+  }
+
+  .mask-image-gradient {
+    mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+  }
+
+  /* Advanced Hero Text Effects */
+  .hero-text-glow {
+    text-shadow:
+      0 0 20px hsla(var(--primary) / 0.5),
+      0 0 40px hsla(var(--secondary) / 0.3);
+  }
+
+  .hero-text-outline {
+    -webkit-text-stroke: 2px hsla(var(--foreground) / 0.8);
+    color: transparent;
+  }
+
+  /* HOOSIER THEME (Indiana Flag: Navy Blue/Gold) */
+  .hoosier {
+    --font-sans: var(--font-roboto-slab);
+    --font-heading: var(--font-rye);
+    /* Deep Navy Background */
+    --background: 221 60% 15%;
+    /* Light Gold/White Text */
+    --foreground: 49 20% 95%;
+
+    --card: 221 50% 18%;
+    --card-foreground: 49 20% 95%;
+    --popover: 221 50% 18%;
+    --popover-foreground: 49 20% 95%;
+
+    /* Indiana Gold */
+    --primary: 49 100% 50%;
+    --primary-foreground: 221 60% 15%;
+
+    /* Muted Navy Secondary */
+    --secondary: 221 30% 25%;
+    --secondary-foreground: 49 100% 50%;
+
+    --muted: 221 30% 25%;
+    --muted-foreground: 221 20% 70%;
+
+    --accent: 49 100% 50%;
+    --accent-foreground: 221 60% 15%;
+
+    --destructive: 0 80% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 221 40% 30%;
+    --input: 221 40% 30%;
+    --ring: 49 100% 50%;
+  }
+
+  /* PEONY THEME (State Flower: Pink/Magenta) */
+  .peony {
+    --font-sans: var(--font-montserrat);
+    --font-heading: var(--font-cinzel);
+    /* Very light pinkish white */
+    --background: 330 30% 98%;
+    /* Deep Plum Text */
+    --foreground: 320 40% 15%;
+
+    --card: 330 30% 99%;
+    --card-foreground: 320 40% 15%;
+    --popover: 330 30% 99%;
+    --popover-foreground: 320 40% 15%;
+
+    /* Peony Pink/Magenta Primary */
+    --primary: 325 70% 55%;
+    --primary-foreground: 330 30% 98%;
+
+    /* Light Rose Secondary */
+    --secondary: 325 30% 90%;
+    --secondary-foreground: 320 40% 15%;
+
+    --muted: 325 15% 92%;
+    --muted-foreground: 320 20% 50%;
+
+    --accent: 325 70% 55%;
+    --accent-foreground: 330 30% 98%;
+
+    --destructive: 0 60% 50%;
+    --destructive-foreground: 330 30% 98%;
+
+    --border: 325 25% 85%;
+    --input: 325 25% 85%;
+    --ring: 325 70% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    font-size: 16px;
+  }
+
+  @media (min-width: 768px) {
+    html {
+      font-size: 18px;
+      /* Scale up everything on desktop */
+    }
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading;
+  }
+}
+
+/* ... existing code ... */
+
+/* NOISE TEXTURE OVERLAY */
+.noise-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 50;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+
+/* Hides scrollbar for clean aesthetic (optional) */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

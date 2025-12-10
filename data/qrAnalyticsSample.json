@@ -1,0 +1,34 @@
+[
+  {
+    "id": "qr-001",
+    "label": "Gallery Wall Poster",
+    "target": "/activists",
+    "totalHits": 124,
+    "uniqueVisitors": 97,
+    "lastScan": "2025-11-15T21:34:00Z"
+  },
+  {
+    "id": "qr-002",
+    "label": "Community Center Flyer",
+    "target": "/activists/map",
+    "totalHits": 85,
+    "uniqueVisitors": 72,
+    "lastScan": "2025-11-18T14:20:00Z"
+  },
+  {
+    "id": "qr-003",
+    "label": "Zine Back Cover",
+    "target": "/activists/zine",
+    "totalHits": 45,
+    "uniqueVisitors": 40,
+    "lastScan": "2025-11-19T09:15:00Z"
+  },
+  {
+    "id": "qr-004",
+    "label": "Instagram Bio Link",
+    "target": "/activists",
+    "totalHits": 312,
+    "uniqueVisitors": 280,
+    "lastScan": "2025-11-20T10:05:00Z"
+  }
+]
