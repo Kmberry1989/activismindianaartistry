@@ -3,7 +3,7 @@
 import React, { useMemo } from "react";
 import type { Artist, Collection } from "@/lib/types";
 import { getCollectionEntries } from "@/lib/collections-utils";
-import ArtistCard from "@/components/artist-card";
+import { ArtistCard } from "@/components/artist-card";
 
 export default function CollectionDetailPageClient({
   collection,

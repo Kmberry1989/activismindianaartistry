@@ -3,8 +3,8 @@
 import React, { useMemo } from "react";
 import { useSearchParams } from "next/navigation";
 import { decodeIdList } from "@/lib/share-links";
-import { artistsData } from "@/lib/artists-data";
-import ArtistCard from "@/components/artist-card";
+import { artists as artistsData } from "@/lib/artists-data";
+import { ArtistCard } from "@/components/artist-card";
 
 export default function FavoritesSharePageClient() {
   const params = useSearchParams();

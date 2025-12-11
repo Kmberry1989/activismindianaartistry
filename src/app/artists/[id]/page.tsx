@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
       description: description,
       images: [
         {
-          url: artist.artwork.imageUrl,
+          url: artist.artwork.imageUrl || "/placeholder.svg?height=600&width=800",
           width: 800,
           height: 600,
           alt: artist.artwork.title,
@@ -48,7 +48,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
       card: 'summary_large_image',
       title: title,
       description: description,
-      images: [artist.artwork.imageUrl],
+      images: [artist.artwork.imageUrl || "/placeholder.svg?height=600&width=800"],
     },
   }
 }

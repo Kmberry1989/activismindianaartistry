@@ -2,7 +2,7 @@
 
 import React, { useMemo } from "react";
 import type { Artist } from "@/lib/types";
-import ArtistCard from "@/components/artist-card";
+import { ArtistCard } from "@/components/artist-card";
 import { getRelatedEntries } from "@/lib/related-entries";
 
 export default function RelatedEntriesPanel({

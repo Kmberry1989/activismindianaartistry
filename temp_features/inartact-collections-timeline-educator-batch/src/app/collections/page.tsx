@@ -1,6 +1,6 @@
 import CollectionsPageClient from "@/components/collections/CollectionsPageClient";
 import { collectionsData } from "@/lib/collections-data";
-import { artistsData } from "@/lib/artists-data";
+import { artists as artistsData } from "@/lib/artists-data";
 
 export default function CollectionsPage() {
   return (

@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useMemo, useState } from "react";
-import { artistsData } from "@/lib/artists-data";
+import { artists as artistsData } from "@/lib/artists-data";
 import { buildEntrySearchIndex, searchEntries } from "@/lib/search/entry-search";
-import ArtistCard from "@/components/artist-card";
+import { ArtistCard } from "@/components/artist-card";
 
 export default function SearchPageClient() {
   const [query, setQuery] = useState("");

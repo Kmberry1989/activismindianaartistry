@@ -2,7 +2,7 @@
 
 import React, { useMemo } from "react";
 import ZineBuilderV2 from "@/components/zine/ZineBuilderV2";
-import { artistsData } from "@/lib/artists-data";
+import { artists as artistsData } from "@/lib/artists-data";
 import { safeGet } from "@/lib/local-storage";
 
 const FAV_KEY = "inartact:favorites:v1";

@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { artistsData } from "@/lib/artists-data";
+import { artists as artistsData } from "@/lib/artists-data";
 import { normalizeEntries } from "@/lib/normalize";
 
 export const runtime = "nodejs";

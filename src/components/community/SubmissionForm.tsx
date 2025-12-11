@@ -4,7 +4,7 @@ import React, { useMemo, useState } from "react";
 import { addSubmission, type SubmissionType } from "@/lib/submissions-store";
 import type { CauseTag } from "@/lib/types";
 import { buildAvailableCauses } from "@/lib/filters";
-import { artistsData } from "@/lib/artists-data";
+import { artists as artistsData } from "@/lib/artists-data";
 
 const TYPES: Array<{ id: SubmissionType; label: string; help: string }> = [
   {

@@ -2,7 +2,7 @@
 
 import React, { useMemo, useState } from "react";
 import type { Artist } from "@/lib/types";
-import ArtistCard from "@/components/artist-card";
+import { ArtistCard } from "@/components/artist-card";
 import { useTours } from "@/hooks/useTours";
 
 export default function MapTourDock({
@@ -27,7 +27,7 @@ export default function MapTourDock({
 
   const activeStops = useMemo(() => {
     if (!active) return [];
-    const set = new Set(active.stops.map(s => s.entryId));
+    const set = new Set(active.stops.map((s: { entryId: string }) => s.entryId));
     return artists.filter(a => set.has(a.id));
   }, [active, artists]);
 

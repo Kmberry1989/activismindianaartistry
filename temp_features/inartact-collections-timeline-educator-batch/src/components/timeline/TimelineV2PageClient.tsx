@@ -2,7 +2,7 @@
 
 import React, { useMemo, useState } from "react";
 import type { Artist } from "@/lib/types";
-import ArtistCard from "@/components/artist-card";
+import { ArtistCard } from "@/components/artist-card";
 import { buildTimelineRows, sortTimelineRows } from "@/lib/timeline-utils";
 
 export default function TimelineV2PageClient({ artists }: { artists: Artist[] }) {

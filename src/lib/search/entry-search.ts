@@ -1,4 +1,4 @@
-import Fuse from "fuse.js";
+import Fuse, { FuseResultMatch } from "fuse.js";
 import type { Entry } from "@/lib/types";
 import { normalizeEntries } from "@/lib/normalize";
 import { CAUSE_SYNONYMS } from "@/lib/synonyms";
@@ -6,7 +6,7 @@ import { CAUSE_SYNONYMS } from "@/lib/synonyms";
 export interface SearchResult {
   item: Entry;
   score?: number;
-  matches?: Fuse.FuseResultMatch[];
+  matches?: readonly FuseResultMatch[];
 }
 
 /**

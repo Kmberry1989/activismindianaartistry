@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import CollectionDetailPageClient from "@/components/collections/CollectionDetailPageClient";
 import { collectionsData } from "@/lib/collections-data";
-import { artistsData } from "@/lib/artists-data";
+import { artists as artistsData } from "@/lib/artists-data";
 import { getCollectionBySlug } from "@/lib/collections-utils";
 
 export default function CollectionSlugPage({
