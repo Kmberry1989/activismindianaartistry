@@ -4,34 +4,64 @@ import { usePathname } from "next/navigation"
 
 import * as React from "react"
 import Link from "next/link"
-import { Menu, Home, Map, Clock, BookOpen, BarChart, Info, Library, GraduationCap, Calendar } from 'lucide-react'
+import {
+  Menu, Home, Map, Clock, BookOpen,
+  Info, Library, GraduationCap, Calendar,
+  Search, Users, Heart, PenTool, Compass, ChevronDown
+} from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { ThemeSwitcher } from "@/components/theme-switcher"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { motion, AnimatePresence } from "framer-motion"
-import { INARTACT_NAV_EXTENSIONS_PHASE2 } from "@/lib/nav-extensions.phase2"
-import { INARTACT_NAV_EXTENSIONS_PHASE3 } from "@/lib/nav-extensions.phase3"
-import { INARTACT_NAV_EXTENSIONS_PHASE4 } from "@/lib/nav-extensions.phase4"
-import { INARTACT_NAV_EXTENSIONS_PHASE6 } from "@/lib/nav-extensions.phase6"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 
-const navigation = [
-  { name: "Directory", href: "/", icon: Home },
-  { name: "Map", href: "/activists/map", icon: Map },
-  { name: "Timeline", href: "/activists/timeline", icon: Clock },
-  { name: "Zine", href: "/activists/zine", icon: BookOpen },
-
-  { name: "About", href: "/about", icon: Info },
-  // Phase 2 Extensions
-  { name: "Collections", href: "/collections", icon: Library },
-  { name: "Timeline+", href: "/timeline/v2", icon: Calendar },
-  { name: "Educators", href: "/education", icon: GraduationCap },
-  // Phase 3 Extensions (Events)
-  { name: "Events", href: "/events", icon: Calendar },
-  // Phase 4 Extensions (Zine+, Contribute)
-  { name: "Zine+", href: "/zine/v2", icon: BookOpen },
-  { name: "Contribute", href: "/community/submit", icon: Info },
-  // Phase 6 Extensions (Search)
-  { name: "Search+", href: "/search", icon: BookOpen },
+// New hierarchical navigation structure
+const navigationData = [
+  {
+    name: "Directory",
+    href: "/",
+    icon: Home
+  },
+  {
+    name: "Discover",
+    icon: Compass,
+    items: [
+      { name: "Map", href: "/activists/map", icon: Map },
+      { name: "Search", href: "/search", icon: Search },
+      { name: "Collections", href: "/collections", icon: Library },
+    ]
+  },
+  {
+    name: "Timeline",
+    icon: Clock,
+    items: [
+      { name: "Standard View", href: "/activists/timeline", icon: Clock },
+      { name: "Interactive (V2)", href: "/timeline/v2", icon: Calendar },
+    ]
+  },
+  {
+    name: "Community",
+    icon: Users,
+    items: [
+      { name: "Events", href: "/events", icon: Calendar },
+      { name: "Zine Gallery", href: "/activists/zine", icon: BookOpen },
+      { name: "Zine Builder", href: "/zine/v2", icon: PenTool },
+      { name: "Contribute", href: "/community/submit", icon: Heart },
+    ]
+  },
+  {
+    name: "Resources",
+    icon: Info,
+    items: [
+      { name: "About", href: "/about", icon: Info },
+      { name: "Educators", href: "/education", icon: GraduationCap },
+    ]
+  }
 ]
 
 interface HeaderProps {
@@ -39,7 +69,7 @@ interface HeaderProps {
 }
 
 export function Header({ hideNav = false }: HeaderProps) {
-  const [hoveredIndex, setHoveredIndex] = React.useState<number | null>(null)
+  const [hoveredIndex, setHoveredIndex] = React.useState<string | null>(null)
   const pathname = usePathname()
 
   return (
@@ -56,38 +86,79 @@ export function Header({ hideNav = false }: HeaderProps) {
             <div className="w-auto rounded-full border border-white/20 bg-background/70 backdrop-blur-xl shadow-lg transition-all duration-300">
               <div className="flex h-14 items-center gap-6 px-6">
 
-                {/* Logo */}
+                {/* Logo Link (Empty content per original design, just for click target if needed) */}
                 <Link href="/" className="flex items-center space-x-2">
                   <span className="text-xl font-bold font-heading tracking-tight text-foreground">
-                    {/* Home removed */}
                   </span>
                 </Link>
 
                 {/* Desktop Nav */}
-                <nav className="hidden md:flex items-center gap-1" onMouseLeave={() => setHoveredIndex(null)}>
-                  {navigation.map((item, index) => {
-                    const isActive = pathname === item.href
+                <nav className="hidden md:flex items-center gap-2" onMouseLeave={() => setHoveredIndex(null)}>
+                  {navigationData.map((item) => {
+                    // Check if any child is active to highlight parent
+                    const isParentActive = item.items?.some(sub => pathname === sub.href) || pathname === item.href
 
+                    if (item.items) {
+                      // Dropdown Menu for Categories
+                      return (
+                        <DropdownMenu key={item.name}>
+                          <DropdownMenuTrigger asChild>
+                            <button
+                              className={`relative px-4 py-2 text-base font-medium transition-colors outline-none flex items-center gap-2 group ${isParentActive ? "text-foreground" : "text-foreground/60 hover:text-foreground/80"
+                                }`}
+                              onMouseEnter={() => setHoveredIndex(item.name)}
+                            >
+                              {(hoveredIndex === item.name || isParentActive) && (
+                                <motion.div
+                                  layoutId="navbar-pill"
+                                  className={`absolute inset-0 rounded-full -z-10 ${isParentActive && hoveredIndex !== item.name
+                                      ? "bg-secondary"
+                                      : "bg-secondary/50"
+                                    }`}
+                                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                                />
+                              )}
+                              <item.icon className="w-4 h-4" />
+                              {item.name}
+                              <ChevronDown className="w-3 h-3 opacity-50 group-data-[state=open]:rotate-180 transition-transform" />
+                            </button>
+                          </DropdownMenuTrigger>
+                          <DropdownMenuContent align="center" className="w-48 bg-background/95 backdrop-blur-md rounded-xl border-border/50">
+                            {item.items.map((subItem) => (
+                              <DropdownMenuItem key={subItem.name} asChild>
+                                <Link
+                                  href={subItem.href}
+                                  className={`flex items-center gap-2 cursor-pointer ${pathname === subItem.href ? "text-primary font-medium" : ""}`}
+                                >
+                                  <subItem.icon className="w-4 h-4 opacity-70" />
+                                  <span>{subItem.name}</span>
+                                </Link>
+                              </DropdownMenuItem>
+                            ))}
+                          </DropdownMenuContent>
+                        </DropdownMenu>
+                      )
+                    }
+
+                    // Direct Link
                     return (
                       <Link
                         key={item.name}
-                        href={item.href}
-                        className={`relative px-4 py-2 text-base font-medium transition-colors ${isActive ? "text-foreground" : "text-foreground/60 hover:text-foreground/80"
+                        href={item.href || "/"}
+                        className={`relative px-4 py-2 text-base font-medium transition-colors ${pathname === item.href ? "text-foreground" : "text-foreground/60 hover:text-foreground/80"
                           }`}
-                        onMouseEnter={() => setHoveredIndex(index)}
+                        onMouseEnter={() => setHoveredIndex(item.name)}
                       >
-                        {/* Floating Pill */}
-                        {(hoveredIndex === index || (isActive && hoveredIndex === null)) && (
+                        {(hoveredIndex === item.name || (pathname === item.href && hoveredIndex === null)) && (
                           <motion.div
                             layoutId="navbar-pill"
-                            className={`absolute inset-0 rounded-full -z-10 ${isActive && hoveredIndex === null
-                              ? "bg-secondary"
-                              : "bg-secondary/50"
+                            className={`absolute inset-0 rounded-full -z-10 ${pathname === item.href && hoveredIndex === null
+                                ? "bg-secondary"
+                                : "bg-secondary/50"
                               }`}
                             transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                           />
                         )}
-
                         <span className="relative z-10 flex items-center gap-2">
                           <item.icon className="w-4 h-4" />
                           {item.name}
@@ -95,6 +166,7 @@ export function Header({ hideNav = false }: HeaderProps) {
                       </Link>
                     )
                   })}
+
                   <div className="pl-4 border-l border-border/50 ml-2">
                     <ThemeSwitcher />
                   </div>
@@ -110,20 +182,41 @@ export function Header({ hideNav = false }: HeaderProps) {
                         <span className="sr-only">Toggle menu</span>
                       </Button>
                     </SheetTrigger>
-                    <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+                    <SheetContent side="right" className="w-[300px] sm:w-[400px] overflow-y-auto">
                       <div className="flex flex-col gap-6 mt-10">
-                        <Link href="/" className="text-2xl font-bold font-heading mb-4">
-                          {/* Home removed */}
-                        </Link>
-                        {navigation.map((item) => (
-                          <Link
-                            key={item.name}
-                            href={item.href}
-                            className="text-xl font-medium hover:text-primary transition-colors flex items-center gap-3"
-                          >
-                            <item.icon className="w-5 h-5" />
-                            {item.name}
-                          </Link>
+                        {navigationData.map((item) => (
+                          <div key={item.name} className="flex flex-col gap-3">
+                            {item.items ? (
+                              <>
+                                <div className="text-sm font-semibold opacity-50 uppercase tracking-wider flex items-center gap-2">
+                                  <item.icon className="w-4 h-4" />
+                                  {item.name}
+                                </div>
+                                <div className="pl-4 flex flex-col gap-3 border-l border-border/40 ml-1">
+                                  {item.items.map(subItem => (
+                                    <Link
+                                      key={subItem.name}
+                                      href={subItem.href}
+                                      className={`text-lg font-medium hover:text-primary transition-colors flex items-center gap-3 ${pathname === subItem.href ? "text-primary" : "text-foreground/80"
+                                        }`}
+                                    >
+                                      <subItem.icon className="w-4 h-4" />
+                                      {subItem.name}
+                                    </Link>
+                                  ))}
+                                </div>
+                              </>
+                            ) : (
+                              <Link
+                                href={item.href || "/"}
+                                className={`text-xl font-bold font-heading hover:text-primary transition-colors flex items-center gap-3 ${pathname === item.href ? "text-primary" : "text-foreground"
+                                  }`}
+                              >
+                                <item.icon className="w-5 h-5" />
+                                {item.name}
+                              </Link>
+                            )}
+                          </div>
                         ))}
                       </div>
                     </SheetContent>
