@@ -24,13 +24,13 @@ export default function MapFilterBar({
   }
 
   return (
-    <div className="rounded-2xl border border-black/10 bg-white p-3 shadow-sm">
+    <div className="rounded-2xl border border-border bg-card p-3 shadow-sm text-card-foreground">
       <div className="grid gap-3 md:grid-cols-[1fr,auto,auto,auto] md:items-center">
         <input
           value={value.query ?? ""}
           onChange={(e) => onChange({ ...value, query: e.target.value || undefined })}
           placeholder="Search map entries..."
-          className="w-full rounded-xl border border-black/10 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-black/10"
+          className="w-full rounded-xl border border-border bg-background px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-primary/20 placeholder:text-muted-foreground"
         />
 
         <div className="flex flex-wrap gap-1">
@@ -43,7 +43,7 @@ export default function MapFilterBar({
                 onClick={() => onChange({ ...value, causeTags: toggle(value.causeTags, c) })}
                 className={[
                   "rounded-full border px-2 py-0.5 text-[10px]",
-                  active ? "border-black/40 bg-black text-white" : "border-black/10 bg-white hover:bg-black/5"
+                  active ? "border-primary/40 bg-primary text-primary-foreground" : "border-border bg-background hover:bg-muted"
                 ].join(" ")}
               >
                 {c}
@@ -57,7 +57,7 @@ export default function MapFilterBar({
           onChange={(e) =>
             onChange({ ...value, mediums: e.target.value ? [e.target.value] : undefined })
           }
-          className="rounded-xl border border-black/10 bg-white px-2 py-2 text-xs"
+          className="rounded-xl border border-border bg-background px-2 py-2 text-xs"
         >
           <option value="">All media</option>
           {mediums.map(m => (
@@ -70,7 +70,7 @@ export default function MapFilterBar({
           onChange={(e) =>
             onChange({ ...value, decades: e.target.value ? [Number(e.target.value)] : undefined })
           }
-          className="rounded-xl border border-black/10 bg-white px-2 py-2 text-xs"
+          className="rounded-xl border border-border bg-background px-2 py-2 text-xs"
         >
           <option value="">All decades</option>
           {decades.map(d => (

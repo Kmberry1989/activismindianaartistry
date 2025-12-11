@@ -56,12 +56,12 @@ export default function LeafletMap({ artists }: { artists: Artist[] }) {
     if (!isMounted) return <div className="h-full w-full bg-muted animate-pulse" />;
 
     const selectedArtist = artists.find(a => a.id === selectedArtistId);
-    const selectedLocation = selectedArtist && selectedArtist.artwork.latitude && selectedArtist.artwork.longitude
-        ? { lat: selectedArtist.artwork.latitude, lng: selectedArtist.artwork.longitude }
+    const selectedLocation = selectedArtist && typeof selectedArtist.artwork.lat === 'number' && typeof selectedArtist.artwork.lng === 'number'
+        ? { lat: selectedArtist.artwork.lat, lng: selectedArtist.artwork.lng }
         : null;
 
     // Filter to valid map artists
-    const mapArtists = artists.filter(a => a.artwork.latitude && a.artwork.longitude);
+    const mapArtists = artists.filter(a => typeof a.artwork.lat === 'number' && typeof a.artwork.lng === 'number');
 
     return (
         <div className="flex flex-col md:flex-row h-full w-full">
@@ -124,22 +124,22 @@ export default function LeafletMap({ artists }: { artists: Artist[] }) {
                         return (
                             <Marker
                                 key={artist.id}
-                                position={[artist.artwork.latitude!, artist.artwork.longitude!]}
+                                position={[artist.artwork.lat!, artist.artwork.lng!]}
                                 icon={createCustomIcon(iconImage, isSelected ? '#3b82f6' : 'white')}
                                 eventHandlers={{
                                     click: () => setSelectedArtistId(artist.id),
                                 }}
                             >
                                 <Popup>
-                                    <div className="min-w-[200px]">
-                                        <h3 className="font-bold text-lg">{artist.artist.name}</h3>
-                                        <p className="text-sm font-medium mb-1">{artist.artwork.title}</p>
-                                        <p className="text-xs text-muted-foreground mb-2">
+                                    <div className="min-w-[200px] text-slate-800">
+                                        <h3 className="font-bold text-lg text-slate-900">{artist.artist.name}</h3>
+                                        <p className="text-sm font-medium mb-1 text-slate-700">{artist.artwork.title}</p>
+                                        <p className="text-xs text-slate-500 mb-2">
                                             {artist.artwork.location}
                                         </p>
                                         <Link
                                             href={`/artists/${artist.id}`}
-                                            className="text-primary hover:underline text-sm"
+                                            className="text-primary hover:underline text-sm font-semibold"
                                         >
                                             View Profile
                                         </Link>

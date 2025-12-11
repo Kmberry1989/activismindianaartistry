@@ -34,7 +34,7 @@ export default function MapPage() {
 
     // 3. Ensure we only pass items with coordinates to the map leaf
     const mapArtists = filteredArtists.filter(
-        (artist) => artist.artwork.latitude && artist.artwork.longitude
+        (artist) => typeof artist.artwork.lat === 'number' && typeof artist.artwork.lng === 'number'
     );
 
     if (!isMounted) {

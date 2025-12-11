@@ -119,8 +119,8 @@ export function normalizeEntry(entry: Entry): Entry {
     }
   };
 
-  normalized.artwork.lat = coerceNumber(normalized.artwork.lat);
-  normalized.artwork.lng = coerceNumber(normalized.artwork.lng);
+  normalized.artwork.lat = coerceNumber(normalized.artwork.lat ?? normalized.artwork.latitude);
+  normalized.artwork.lng = coerceNumber(normalized.artwork.lng ?? normalized.artwork.longitude);
 
   normalized.artwork.causeTags = normalizeCauseTags(normalized);
 
