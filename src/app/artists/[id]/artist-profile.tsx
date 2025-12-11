@@ -27,6 +27,13 @@ export function ArtistProfile({ artist }: ArtistProfileProps) {
     } ${artist.artist.bio || ''} . The Work: ${artist.artwork.title}. ${artist.artwork.description || ''
     }`;
 
+  // Helper to ensure URL has protocol
+  const ensureProtocol = (url: string) => {
+    if (!url) return '';
+    if (url.startsWith('http://') || url.startsWith('https://')) return url;
+    return `https://${url}`;
+  };
+
   return (
     <div className="container mx-auto px-4 py-12 max-w-5xl">
       <Link
@@ -263,7 +270,7 @@ export function ArtistProfile({ artist }: ArtistProfileProps) {
               <div className="flex flex-wrap gap-3">
                 {artist.artist.website && (
                   <Button variant="default" size="sm" asChild>
-                    <a href={artist.artist.website} target="_blank" rel="noopener noreferrer">
+                    <a href={ensureProtocol(artist.artist.website)} target="_blank" rel="noopener noreferrer">
                       Official Website
                     </a>
                   </Button>
@@ -271,7 +278,7 @@ export function ArtistProfile({ artist }: ArtistProfileProps) {
 
                 {artist.artwork.portfolio_url && (
                   <Button variant="secondary" size="sm" asChild>
-                    <a href={artist.artwork.portfolio_url} target="_blank" rel="noopener noreferrer">
+                    <a href={ensureProtocol(artist.artwork.portfolio_url)} target="_blank" rel="noopener noreferrer">
                       View Portfolio
                     </a>
                   </Button>
