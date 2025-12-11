@@ -73,7 +73,6 @@ export default function MapPage() {
                     </CardContent>
                 </Card>
             </main>
-            <Footer />
         </div>
     );
 }

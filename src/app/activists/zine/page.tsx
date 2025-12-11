@@ -266,9 +266,7 @@ export default function ZinePage() {
                     </div>
                 </div>
             </main>
-            <div className="print:hidden">
-                <Footer />
-            </div>
+
         </div>
     );
 }

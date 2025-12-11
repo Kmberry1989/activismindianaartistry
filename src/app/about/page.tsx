@@ -1,7 +1,7 @@
 'use client';
 
 import { Header } from '@/components/header'
-import { Footer } from '@/components/footer'
+
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { artists } from '@/lib/artists-data'
@@ -15,10 +15,10 @@ export default function AboutPage() {
         <div className="min-h-screen bg-background flex flex-col overflow-x-hidden">
             <Header />
             <main className="flex-1 container mx-auto px-4 py-24 md:py-32">
-                
+
                 {/* Hero Section */}
                 <div className="max-w-4xl mx-auto text-center mb-20">
-                    <motion.h1 
+                    <motion.h1
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6 }}
@@ -26,7 +26,7 @@ export default function AboutPage() {
                     >
                         About the Project
                     </motion.h1>
-                    <motion.p 
+                    <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.2 }}
@@ -44,11 +44,11 @@ export default function AboutPage() {
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
                     >
-                         <div className="relative h-[400px] md:h-[500px] rounded-2xl overflow-hidden shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-500">
-                            <Image 
-                                src="/hero/protest-crowd.png" 
-                                alt="Protest Art" 
-                                fill 
+                        <div className="relative h-[400px] md:h-[500px] rounded-2xl overflow-hidden shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-500">
+                            <Image
+                                src="/hero/protest-crowd.png"
+                                alt="Protest Art"
+                                fill
                                 className="object-cover"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
@@ -86,8 +86,8 @@ export default function AboutPage() {
                     >
                         {featuredImages.map((src, i) => (
                             <div key={i} className="mb-4 relative rounded-lg overflow-hidden h-48 md:h-64">
-                                <Image 
-                                    src={src || '/placeholder.jpg'} 
+                                <Image
+                                    src={src || '/placeholder.jpg'}
                                     alt="Featured artwork"
                                     fill
                                     className="object-cover hover:scale-110 transition-transform duration-700"
@@ -120,7 +120,7 @@ export default function AboutPage() {
                 </div>
 
             </main>
-            <Footer />
+
         </div>
     )
 }

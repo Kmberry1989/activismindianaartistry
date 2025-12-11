@@ -68,7 +68,7 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
       <main className="flex-1">
         <ArtistProfile artist={artist} />
       </main>
-      <Footer />
+
     </div>
   )
 }

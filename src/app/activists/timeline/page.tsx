@@ -34,14 +34,14 @@ export default function TimelinePage() {
                                     <div className="md:flex">
                                         {/* Image Section */}
                                         <div className="relative h-48 md:h-auto md:w-48 shrink-0 bg-muted">
-                                            <Image 
-                                                src={artist.artwork.imageUrl || '/placeholder.jpg'} 
+                                            <Image
+                                                src={artist.artwork.imageUrl || '/placeholder.jpg'}
                                                 alt={artist.artwork.title}
                                                 fill
                                                 className="object-cover"
                                             />
                                         </div>
-                                        
+
                                         <div className="flex-1">
                                             <CardHeader>
                                                 <div className="flex flex-wrap gap-2 mb-2">
@@ -72,7 +72,7 @@ export default function TimelinePage() {
                     ))}
                 </div>
             </main>
-            <Footer />
+
         </div>
     )
 }

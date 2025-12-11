@@ -50,7 +50,7 @@ const navigationData = [
     items: [
       { name: "Events", href: "/events", icon: Calendar },
       { name: "Zine Gallery", href: "/activists/zine", icon: BookOpen },
-      { name: "Zine Builder", href: "/zine/v2", icon: PenTool },
+
       { name: "Contribute", href: "/community/submit", icon: Heart },
     ]
   },
@@ -112,8 +112,8 @@ export function Header({ hideNav = false }: HeaderProps) {
                                 <motion.div
                                   layoutId="navbar-pill"
                                   className={`absolute inset-0 rounded-full -z-10 ${isParentActive && hoveredIndex !== item.name
-                                      ? "bg-secondary"
-                                      : "bg-secondary/50"
+                                    ? "bg-secondary"
+                                    : "bg-secondary/50"
                                     }`}
                                   transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                                 />
@@ -153,8 +153,8 @@ export function Header({ hideNav = false }: HeaderProps) {
                           <motion.div
                             layoutId="navbar-pill"
                             className={`absolute inset-0 rounded-full -z-10 ${pathname === item.href && hoveredIndex === null
-                                ? "bg-secondary"
-                                : "bg-secondary/50"
+                              ? "bg-secondary"
+                              : "bg-secondary/50"
                               }`}
                             transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                           />
