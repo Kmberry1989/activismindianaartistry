@@ -141,18 +141,18 @@ export default function ZineBuilderV2({
       </div>
 
       <div className="space-y-4">
-        <div className="rounded-2xl border border-black/10 bg-white p-4 shadow-sm">
+        <div className="rounded-2xl border border-border bg-card p-4 shadow-sm text-card-foreground">
           <label className="block">
             <div className="mb-1 text-xs font-semibold">Zine title</div>
             <input
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="w-full rounded-xl border border-black/10 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-black/10"
+              className="w-full rounded-xl border border-border px-3 py-2 text-sm outline-none bg-background focus:ring-2 focus:ring-ring"
             />
           </label>
         </div>
 
-        <div className="rounded-2xl border border-black/10 bg-white p-4 shadow-sm">
+        <div className="rounded-2xl border border-border bg-card p-4 shadow-sm text-card-foreground">
           <div className="text-xs font-semibold mb-2">Template</div>
           <div className="flex flex-wrap gap-2">
             {ZINE_TEMPLATES.map(t => (
@@ -163,8 +163,8 @@ export default function ZineBuilderV2({
                 className={[
                   "rounded-full border px-3 py-1 text-[11px]",
                   templateId === t.id
-                    ? "border-black/40 bg-black text-white"
-                    : "border-black/10 bg-white hover:bg-black/5"
+                    ? "border-primary/40 bg-primary text-primary-foreground"
+                    : "border-border bg-card hover:bg-muted"
                 ].join(" ")}
               >
                 {t.label}
@@ -176,7 +176,7 @@ export default function ZineBuilderV2({
           </div>
         </div>
 
-        <div className="rounded-2xl border border-black/10 bg-white p-4 shadow-sm">
+        <div className="rounded-2xl border border-border bg-card p-4 shadow-sm text-card-foreground">
           <div className="text-xs font-semibold mb-2">
             Source
           </div>
@@ -187,7 +187,7 @@ export default function ZineBuilderV2({
             <select
               value={collectionSlug}
               onChange={(e) => setCollectionSlug(e.target.value)}
-              className="w-full rounded-xl border border-black/10 bg-white px-3 py-2 text-sm"
+              className="w-full rounded-xl border border-border bg-background px-3 py-2 text-sm"
             >
               <option value="">None</option>
               {collectionsData.map(c => (
@@ -206,7 +206,7 @@ export default function ZineBuilderV2({
 
         <button
           onClick={generate}
-          className="w-full rounded-2xl bg-black px-4 py-3 text-sm font-semibold text-white shadow-sm hover:opacity-95"
+          className="w-full rounded-2xl bg-primary px-4 py-3 text-sm font-semibold text-primary-foreground shadow-sm hover:opacity-95"
         >
           Generate PDF
         </button>

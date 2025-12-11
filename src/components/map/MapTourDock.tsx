@@ -34,7 +34,7 @@ export default function MapTourDock({
   return (
     <div
       className={[
-        "rounded-2xl border border-black/10 bg-white p-4 shadow-sm",
+        "rounded-2xl border border-border bg-card p-4 shadow-sm text-card-foreground",
         className ?? ""
       ].join(" ")}
     >
@@ -45,7 +45,7 @@ export default function MapTourDock({
             const t = newTour();
             setTitleDraft(t.title);
           }}
-          className="rounded-md bg-black px-2 py-1 text-[10px] text-white"
+          className="rounded-md bg-primary px-2 py-1 text-[10px] text-primary-foreground hover:bg-primary/90"
         >
           New tour
         </button>
@@ -67,8 +67,8 @@ export default function MapTourDock({
                 className={[
                   "rounded-full border px-2 py-0.5 text-[10px]",
                   t.id === activeId
-                    ? "border-black/40 bg-black text-white"
-                    : "border-black/10 bg-white hover:bg-black/5"
+                    ? "border-primary/40 bg-primary text-primary-foreground"
+                    : "border-border bg-card hover:bg-muted"
                 ].join(" ")}
               >
                 {t.title}
@@ -88,11 +88,11 @@ export default function MapTourDock({
               <input
                 value={titleDraft}
                 onChange={(e) => setTitleDraft(e.target.value)}
-                className="flex-1 rounded-xl border border-black/10 px-3 py-2 text-xs outline-none focus:ring-2 focus:ring-black/10"
+                className="flex-1 rounded-xl border border-border bg-background px-3 py-2 text-xs outline-none focus:ring-2 focus:ring-ring"
               />
               <button
                 onClick={() => renameTour(active.id, titleDraft.trim() || active.title)}
-                className="rounded-xl border border-black/10 bg-white px-3 py-2 text-xs hover:bg-black/5"
+                className="rounded-xl border border-border bg-card px-3 py-2 text-xs hover:bg-muted"
               >
                 Save
               </button>
@@ -105,14 +105,14 @@ export default function MapTourDock({
             </div>
             <button
               onClick={() => deleteTour(active.id)}
-              className="rounded-md border border-black/10 bg-white px-2 py-1 text-[9px] hover:bg-black/5"
+              className="rounded-md border border-border bg-card px-2 py-1 text-[9px] hover:bg-muted"
             >
               Delete tour
             </button>
           </div>
 
           {activeStops.length === 0 ? (
-            <div className="mt-2 rounded-xl border border-black/10 bg-black/5 p-3 text-xs opacity-70">
+            <div className="mt-2 rounded-xl border border-border bg-muted/50 p-3 text-xs opacity-70">
               Use “Add to tour” from a map popup or directory card.
             </div>
           ) : (
@@ -122,7 +122,7 @@ export default function MapTourDock({
                   <ArtistCard artist={a} />
                   <button
                     onClick={() => removeStop(a.id)}
-                    className="absolute right-3 top-3 rounded-full border border-black/10 bg-white px-2 py-1 text-[10px] hover:bg-black/5"
+                    className="absolute right-3 top-3 rounded-full border border-border bg-card px-2 py-1 text-[10px] hover:bg-muted"
                   >
                     Remove
                   </button>
@@ -132,7 +132,7 @@ export default function MapTourDock({
           )}
         </>
       ) : (
-        <div className="mt-4 rounded-xl border border-black/10 bg-black/5 p-3 text-xs opacity-70">
+        <div className="mt-4 rounded-xl border border-border bg-muted/50 p-3 text-xs opacity-70">
           Create or select a tour to start adding stops.
         </div>
       )}

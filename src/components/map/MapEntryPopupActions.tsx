@@ -22,7 +22,7 @@ export default function MapEntryPopupActions({
     <div className="mt-3 flex flex-wrap gap-2">
       <button
         onClick={() => toggleFavorite(entryId)}
-        className="rounded-full border border-black/10 bg-white px-2.5 py-1 text-[10px] hover:bg-black/5"
+        className="rounded-full border border-border bg-card px-2.5 py-1 text-[10px] hover:bg-muted text-card-foreground"
         aria-pressed={fav}
       >
         {fav ? "Saved" : "Save"}
@@ -33,7 +33,7 @@ export default function MapEntryPopupActions({
           if (!active) return;
           addStop(entryId);
         }}
-        className="rounded-full border border-black/10 bg-white px-2.5 py-1 text-[10px] hover:bg-black/5"
+        className="rounded-full border border-border bg-card px-2.5 py-1 text-[10px] hover:bg-muted text-card-foreground"
         title={active ? "Add to active tour" : "Select a tour first"}
         aria-disabled={!active}
       >

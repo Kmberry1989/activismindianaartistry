@@ -37,7 +37,7 @@ export default function CollectionDetailPageClient({
             {collection.causeTags.map(c => (
               <span
                 key={`${collection.id}-${c}`}
-                className="rounded-full border border-black/10 bg-black/5 px-2 py-0.5 text-[10px]"
+                className="rounded-full border border-border bg-muted px-2 py-0.5 text-[10px]"
               >
                 {c}
               </span>
@@ -47,9 +47,9 @@ export default function CollectionDetailPageClient({
       </div>
 
       {entries.length === 0 ? (
-        <div className="rounded-2xl border border-black/10 bg-white p-8 text-center text-sm opacity-70">
+        <div className="rounded-2xl border border-border bg-card p-8 text-center text-sm opacity-70 text-card-foreground">
           This collection is ready for entry IDs.
-          Add real IDs in <code className="rounded bg-black/5 px-1">collections-data.ts</code>.
+          Add real IDs in <code className="rounded bg-muted px-1">collections-data.ts</code>.
         </div>
       ) : (
         <div>
