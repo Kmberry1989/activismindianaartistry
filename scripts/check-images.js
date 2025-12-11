@@ -36,7 +36,7 @@ while ((match = imageRegex.exec(content)) !== null) {
 
     // Local path check
     // Clean path: remove query params, ensure it starts with / logic
-    const cleanPath = imagePath.split('?')[0];
+    const cleanPath = decodeURIComponent(imagePath.split('?')[0]);
     const fullPath = path.join(publicDir, cleanPath.startsWith('/') ? cleanPath : '/' + cleanPath);
 
     if (!fs.existsSync(fullPath)) {

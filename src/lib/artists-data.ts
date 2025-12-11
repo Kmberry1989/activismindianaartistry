@@ -1068,7 +1068,7 @@ export const artists: Artist[] = [
       "date": "2014",
       "location": "Indianapolis / Global",
       "cause": "Gender & Cultural Intersectionality",
-      "imageUrl": "/Images/Anila Quayyum Agha_Intersections.jpg",
+      "imageUrl": "/Images/Anila%20Quayyum%20Agha_Intersections.jpg",
       "credit": "https://www.anilaagha.com/intersections",
       "latitude": null,
       "longitude": null,
@@ -1203,7 +1203,7 @@ export const artists: Artist[] = [
       "date": "Ongoing",
       "location": "Indianapolis",
       "cause": "Environmental Justice",
-      "imageUrl": "/Images/Shamira Wilson_ Ethnobotany Series.jpg",
+      "imageUrl": "/Images/Shamira%20Wilson_%20Ethnobotany%20Series.jpg",
       "credit": "https://shamirawilson.com/about",
       "latitude": 39.7782094,
       "longitude": -86.184366,
@@ -1253,7 +1253,7 @@ export const artists: Artist[] = [
       "date": "2021",
       "location": "Franklin / Camp Atterbury",
       "cause": "Refugee Support / Social Justice",
-      "imageUrl": "/Images/Tiffany Black_August 15 (Mural).jpg",
+      "imageUrl": "/Images/Tiffany%20Black_August%2015%20(Mural).jpg",
       "credit": "https://www.tblack.co/august15",
       "latitude": null,
       "longitude": null,
@@ -1283,7 +1283,7 @@ export const artists: Artist[] = [
       "longitude": -86.1583502,
       "categories": [],
       "searchQuery": "Artur Silva/ Kyle Long Cultural Cannibal Indianapolis (Gainbridge Fieldhouse) Cultural Critique / History",
-      "imageUrl": "/Images/Artur Silva_Cultural Cannibal.jpg",
+      "imageUrl": "/Images/Artur%20Silva_Cultural%20Cannibal.jpg",
       "news_media_coverage": []
     }
   },
@@ -1330,7 +1330,7 @@ export const artists: Artist[] = [
       "date": "2020s",
       "location": "Indianapolis (Work often travels)",
       "cause": "Racial Justice / History",
-      "imageUrl": "/Images/Shawn Michael Warren_The Words Fastest.jpg",
+      "imageUrl": "/Images/Shawn%20Michael%20Warren_The%20Words%20Fastest.jpg",
       "credit": "https://www.shawnmichaelwarren.com/murals",
       "latitude": 39.7666324,
       "longitude": -86.1577314,
@@ -1414,7 +1414,7 @@ export const artists: Artist[] = [
       "longitude": -86.1583502,
       "categories": [],
       "searchQuery": "Lobyn Hamilton (Walter “Lobyn” Hamilton) What I Have Is What You Have Indianapolis (Central Library) Music / Cultural Heritage",
-      "imageUrl": "/Images/LobynHamilton_What I Have Is What You Have.jpg",
+      "imageUrl": "/Images/LobynHamilton_What%20I%20Have%20Is%20What%20You%20Have.jpg",
       "news_media_coverage": []
     }
   },
@@ -1466,7 +1466,7 @@ export const artists: Artist[] = [
       "credit": "https://indynow2010ls.wixsite.com/website-5/projects",
       "categories": [],
       "searchQuery": "Phyllis Boyd RECLAIM Project Indianapolis (Near Eastside) Environmental / Public Space",
-      "imageUrl": "/Images/Phyllis Viola Boyd_RECLAIM Project.jpg",
+      "imageUrl": "/Images/Phyllis%20Viola%20Boyd_RECLAIM%20Project.jpg",
       "news_media_coverage": []
     }
   },
@@ -1547,7 +1547,7 @@ export const artists: Artist[] = [
       "longitude": -86.1660826,
       "categories": [],
       "searchQuery": "Fingers (Graffiti Artist) Black Lives Matter Mural (Fist) Indianapolis (Indiana Ave) Racial Justice",
-      "imageUrl": "/placeholder.svg",
+      "imageUrl": "/Images/Kenneth_Hordge.jpg",
       "news_media_coverage": []
     }
   },
@@ -1569,7 +1569,7 @@ export const artists: Artist[] = [
       "date": "2022",
       "location": "Indianapolis",
       "cause": "Neighborhood Preservation / Justice",
-      "imageUrl": "/Images/CierraJohnson_Storytelling Drawing Sessions _ Making Martindale.png",
+      "imageUrl": "/Images/CierraJohnson_Storytelling%20Drawing%20Sessions%20_%20Making%20Martindale.png",
       "credit": "https://cjcrtv.com/storytelling-drawing-sessions   (anti-erasure)",
       "latitude": null,
       "longitude": null,
@@ -1918,7 +1918,7 @@ export const artists: Artist[] = [
       "date": "2012",
       "location": "Indianapolis (Eskenazi Health)",
       "cause": "Black Experience / Family",
-      "imageUrl": "/Images/India Cruse-Griffin_HopeSkipandJump.png",
+      "imageUrl": "/Images/India%20Cruse-Griffin_HopeSkipandJump.png",
       "credit": "https://publicartarchive.org/art/Hope-Skip-and-Jump/ca85f4e7",
       "latitude": 39.7782094,
       "longitude": -86.184366,
