@@ -69,7 +69,7 @@ export function HeroParallax() {
       {/* LAYER 2.5: Indiana Flag */}
       <motion.div
         style={{ y: yFlag, x: xFlag, scale: scaleFlag }}
-        className="absolute top-[5%] md:top-[18%] left-[35%] -translate-x-1/2 z-0 w-[80vw] h-[80vh] md:w-[800px] md:h-[600px] opacity-20 pointer-events-none origin-center"
+        className="absolute top-[5%] md:top-[18%] left-[35%] -translate-x-1/2 z-0 w-[40vw] h-[40vh] md:w-[400px] md:h-[300px] opacity-20 pointer-events-none origin-center"
       >
         <Image
           src="/hero/Flag_of_Indiana.png"
@@ -83,16 +83,17 @@ export function HeroParallax() {
       {/* LAYER 3: Text (Behind the crowd slightly) */}
       <motion.div
         style={{ y: yText }}
-        className="relative z-30 flex flex-col items-center justify-center w-full text-center mt-0 md:mt-10"
+        className="relative z-30 flex flex-col items-center justify-center w-full text-center -mt-12 md:-mt-20"
       >
-        <h1 className="flex gap-4 md:gap-8 flex-wrap justify-center font-black tracking-tighter">
-          {/* Apply effects to wrapper or individually */}
-          <div className="text-6xl md:text-9xl hero-text-glow text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-primary animate-gradient-x bg-[length:200%_auto] drop-shadow-2xl flex gap-4 md:gap-8">
-            <SplitText word="ACT." delay={0} />
-            <SplitText word="IN." delay={0.2} />
-            <SplitText word="ART." delay={0.4} />
-          </div>
-        </h1>
+        <div className="relative w-[560px] max-w-[90vw] h-[200px] md:w-[1200px] md:max-w-[80vw] md:h-[400px] mb-4 md:mb-8">
+          <Image
+            src="/icons/actinartlogo.png"
+            alt="Act In Art Logo"
+            fill
+            className="object-contain drop-shadow-2xl"
+            priority
+          />
+        </div>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
