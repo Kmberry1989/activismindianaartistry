@@ -1,23 +1,25 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import Link from "next/link";
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetDescription,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+import { LessonPlan, LessonPlanCard } from "./LessonPlanCard";
+import { GlossaryTerm, GlossarySection } from "./GlossarySection";
 import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Filter } from "lucide-react";
 
 // Lesson Plan Data
-const LESSON_PLANS = [
+const LESSON_PLANS: LessonPlan[] = [
   {
     title: "Art as Protest",
     grade: "Grades 9-12",
     standard: "Visual Arts / Civics",
+    standardCode: "VA:Cr1.1.Ia, CV.2.3",
     summary:
       "Analyze how the 'Black Lives Matter' murals on Indiana Avenue served as both artistic expression and political assembly.",
     objectives: [
@@ -36,6 +38,7 @@ const LESSON_PLANS = [
     title: "Mapping Your Narratives",
     grade: "Grades 6-8",
     standard: "Geography / History",
+    standardCode: "6.1.15, VA:Cn11.1.8a",
     summary:
       "Students use the Activist Map to identify art in their own neighborhoods and create a 'place-based' biography of their community.",
     objectives: [
@@ -51,9 +54,31 @@ const LESSON_PLANS = [
     ],
   },
   {
+    title: "Protest in Print",
+    grade: "Grades 5-12",
+    standard: "Media Arts / Literacy",
+    standardCode: "MA:Cr3.1.8a, 8.W.3.2",
+    summary:
+      "Learn the history of zines as a tool for underground communication and create a digital zine to advocate for a cause.",
+    objectives: [
+      "Define 'zine' and explain their historical role in activism (e.g., riot grrrl, punk scene).",
+      "Combine text and imagery to create a persuasive message.",
+      "Use the digital Zine Builder tool to publish a mini-magazine.",
+    ],
+    procedures: [
+      "1. History (10 min): Brief slideshow on the history of DIY publishing.",
+      "2. Brainstorming (10 min): Pick a cause you care about (e.g., recycling, bullying, parks).",
+      "3. Workshop (25 min): Use the 'Zine Builder' on this site to select standard layouts and add text/stamps.",
+      "4. Share (10 min): Swap digital zines with a partner and identify the main argument.",
+    ],
+    actionLink: "/zine/v2",
+    actionLabel: "Open Zine Builder",
+  },
+  {
     title: "Colors of Culture",
     grade: "Grades 4-5",
     standard: "Social Studies",
+    standardCode: "4.1.18, VA:Re7.2.4a",
     summary:
       "Explore how artists like The Eighteen Art Collective use color to represent identity and history in Indianapolis.",
     objectives: [
@@ -70,7 +95,43 @@ const LESSON_PLANS = [
   },
 ];
 
+const GLOSSARY_TERMS: GlossaryTerm[] = [
+  {
+    term: "Social Practice",
+    def: "An art medium that focuses on social engagement, inviting collaboration with individuals, communities, and institutions in the creation of participatory art.",
+  },
+  {
+    term: "Ephemeral Art",
+    def: "Art that is temporary and designed to decay or disappear over time, such as sidewalk chalk protest messages or wheat-paste posters.",
+  },
+  {
+    term: "Gentrification",
+    def: "The process whereby the character of a poor urban area is changed by wealthier people moving in, improving housing, and attracting new businesses, often displacing current inhabitants.",
+  },
+  {
+    term: "Muralism",
+    def: "The artistic practice of painting large-scale artworks on walls or ceilings, often used to make art accessible to the public outside of galleries.",
+  },
+];
+
 export default function EducatorResourcesPageClient() {
+  const [gradeFilter, setGradeFilter] = useState<string>("All");
+
+  const filteredPlans = useMemo(() => {
+    if (gradeFilter === "All") return LESSON_PLANS;
+    // Simple naive filter. Real world might need range checking.
+    // Our data: "Grades 9-12", "Grades 6-8", "Grades 5-12", "Grades 4-5"
+    // Filter options: "Secondary (6-12)", "Elementary (K-5)"
+
+    if (gradeFilter === "Elementary") {
+      return LESSON_PLANS.filter(p => p.grade.includes("4-5") || p.grade.includes("K-5"));
+    }
+    if (gradeFilter === "Secondary") {
+      return LESSON_PLANS.filter(p => p.grade.includes("6-8") || p.grade.includes("9-12") || p.grade.includes("5-12"));
+    }
+    return LESSON_PLANS;
+  }, [gradeFilter]);
+
   return (
     <div className="mx-auto max-w-5xl px-4 py-8">
       <div className="mb-8">
@@ -83,155 +144,126 @@ export default function EducatorResourcesPageClient() {
         </p>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {/* Lesson Plans Section */}
-        <div className="col-span-full mb-4">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <span>📚</span> Lesson Plans
-          </h2>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {LESSON_PLANS.map((plan, i) => (
-              <Sheet key={i}>
-                <div className="group relative rounded-xl border border-border bg-card p-5 shadow-sm hover:shadow-md transition-all flex flex-col h-full">
-                  <div className="mb-2 flex items-center justify-between">
-                    <span className="rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-medium text-primary">
-                      {plan.grade}
-                    </span>
-                    <span className="text-[10px] uppercase tracking-wider opacity-60">
-                      Viewable
-                    </span>
-                  </div>
-                  <h3 className="font-bold text-lg leading-tight group-hover:text-primary transition-colors">
-                    {plan.title}
-                  </h3>
-                  <p className="mt-1 text-xs opacity-60 font-medium">
-                    {plan.standard}
-                  </p>
-                  <p className="mt-3 text-sm opacity-80 leading-relaxed flex-1">
-                    {plan.summary}
-                  </p>
-                  <SheetTrigger asChild>
-                    <Button
-                      variant="outline"
-                      className="mt-4 w-full"
-                    >
-                      View Lesson Plan
-                    </Button>
-                  </SheetTrigger>
+      <div className="grid gap-6 md:grid-cols-12">
+        {/* Lesson Plans Section - 8 cols */}
+        <div className="md:col-span-8 space-y-8">
+          <div>
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-2xl font-bold flex items-center gap-2">
+                <span>📚</span> Lesson Plans
+              </h2>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="outline" size="sm" className="h-8 gap-1">
+                    <Filter className="w-3.5 h-3.5" />
+                    <span className="hidden sm:inline">Filter:</span> {gradeFilter}
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuItem onClick={() => setGradeFilter("All")}>
+                    All Grades
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => setGradeFilter("Elementary")}>
+                    Elementary (K-5)
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => setGradeFilter("Secondary")}>
+                    Secondary (6-12)
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
+
+            <div className="grid gap-4 sm:grid-cols-2">
+              {filteredPlans.length > 0 ? (
+                filteredPlans.map((plan, i) => (
+                  <LessonPlanCard key={i} plan={plan} />
+                ))
+              ) : (
+                <div className="col-span-full py-8 text-center text-muted-foreground border border-dashed rounded-lg">
+                  No lesson plans found for this filter.
                 </div>
-
-                <SheetContent className="w-[400px] sm:w-[540px] overflow-y-auto">
-                  <SheetHeader className="mb-6">
-                    <SheetTitle className="text-2xl">{plan.title}</SheetTitle>
-                    <SheetDescription>
-                      {plan.grade} • {plan.standard}
-                    </SheetDescription>
-                  </SheetHeader>
-                  <div className="space-y-6">
-                    <div>
-                      <h4 className="font-bold text-sm uppercase tracking-wider mb-2 text-primary">
-                        Objectives
-                      </h4>
-                      <ul className="list-disc pl-5 space-y-1 text-sm">
-                        {plan.objectives.map((obj, idx) => (
-                          <li key={idx}>{obj}</li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div className="border-t pt-4">
-                      <h4 className="font-bold text-sm uppercase tracking-wider mb-2 text-primary">
-                        Procedures
-                      </h4>
-                      <div className="space-y-3">
-                        {plan.procedures.map((step, idx) => (
-                          <p key={idx} className="text-sm bg-muted/30 p-3 rounded-lg border">
-                            {step}
-                          </p>
-                        ))}
-                      </div>
-                    </div>
-                    <div className="pt-8">
-                      <Button className="w-full" onClick={() => window.print()}>Print / Save as PDF</Button>
-                    </div>
-                  </div>
-                </SheetContent>
-              </Sheet>
-            ))}
-          </div>
-        </div>
-
-        {/* Discussion Guide */}
-        <div className="md:col-span-2 rounded-2xl border border-border bg-muted/30 p-6">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <span>💬</span> Discussion Guide
-          </h2>
-          <div className="space-y-4">
-            <div className="bg-card p-4 rounded-xl border border-border">
-              <h3 className="font-semibold text-sm uppercase tracking-wide opacity-70 mb-2">
-                Pre-Visit Questions
-              </h3>
-              <ul className="list-disc pl-5 space-y-1 text-sm opacity-90">
-                <li>
-                  What is the difference between &quot;vandalism&quot; and
-                  &quot;street art&quot;? Who decides?
-                </li>
-                <li>
-                  Can a painting or sculpture change how people think? Give an
-                  example.
-                </li>
-                <li>
-                  Why do you think artists choose to work in public spaces instead
-                  of museums?
-                </li>
-              </ul>
-            </div>
-            <div className="bg-card p-4 rounded-xl border border-border">
-              <h3 className="font-semibold text-sm uppercase tracking-wide opacity-70 mb-2">
-                Analysis Questions
-              </h3>
-              <ul className="list-disc pl-5 space-y-1 text-sm opacity-90">
-                <li>How does the location of this artwork change its meaning?</li>
-                <li>
-                  What symbols or colors does the artist use to communicate their
-                  message?
-                </li>
-                <li>Who is the intended audience for this piece?</li>
-              </ul>
+              )}
             </div>
           </div>
+
+          <GlossarySection terms={GLOSSARY_TERMS} />
         </div>
 
-        {/* Virtual Tools */}
-        <div className="rounded-2xl border border-border bg-primary/5 p-6">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <span>💻</span> Virtual Tools
-          </h2>
-          <p className="text-sm opacity-80 mb-4">
-            Interactive modes designed for student exploration.
-          </p>
-          <div className="space-y-3">
-            <Link
-              href="/activists/timeline"
-              className="block rounded-lg bg-background p-3 shadow-sm border border-border hover:border-primary transition-colors cursor-pointer"
-            >
-              <div className="font-bold text-sm flex items-center justify-between">
-                Timeline Scavenger Hunt <span className="text-xs">↗</span>
+        {/* Sidebar Section - 4 cols */}
+        <div className="md:col-span-4 space-y-6">
+          {/* Discussion Guide */}
+          <div className="rounded-2xl border border-border bg-muted/30 p-6">
+            <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
+              <span>💬</span> Discussion Guide
+            </h2>
+            <div className="space-y-4">
+              <div className="bg-card p-4 rounded-xl border border-border">
+                <h3 className="font-semibold text-xs uppercase tracking-wide opacity-70 mb-2">
+                  Pre-Visit Questions
+                </h3>
+                <ul className="list-disc pl-4 space-y-2 text-xs opacity-90">
+                  <li>
+                    What is the difference between &quot;vandalism&quot; and
+                    &quot;street art&quot;? Who decides?
+                  </li>
+                  <li>
+                    Can a painting or sculpture change how people think? Give an
+                    example.
+                  </li>
+                  <li>
+                    Why do you think artists choose to work in public spaces instead
+                    of museums?
+                  </li>
+                </ul>
               </div>
-              <p className="text-xs opacity-60 mt-1">
-                Find 5 events where art directly impacted a law or policy.
-              </p>
-            </Link>
-            <Link
-              href="/activists/map"
-              className="block rounded-lg bg-background p-3 shadow-sm border border-border hover:border-primary transition-colors cursor-pointer"
-            >
-              <div className="font-bold text-sm flex items-center justify-between">
-                Map Odyssey <span className="text-xs">↗</span>
+              <div className="bg-card p-4 rounded-xl border border-border">
+                <h3 className="font-semibold text-xs uppercase tracking-wide opacity-70 mb-2">
+                  Analysis Questions
+                </h3>
+                <ul className="list-disc pl-4 space-y-2 text-xs opacity-90">
+                  <li>How does the location of this artwork change its meaning?</li>
+                  <li>
+                    What symbols or colors does the artist use to communicate their
+                    message?
+                  </li>
+                  <li>Who is the intended audience for this piece?</li>
+                </ul>
               </div>
-              <p className="text-xs opacity-60 mt-1">
-                Plan a walking tour visiting 3 murals within 1 mile.
-              </p>
-            </Link>
+            </div>
+          </div>
+
+          {/* Virtual Tools */}
+          <div className="rounded-2xl border border-border bg-primary/5 p-6">
+            <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
+              <span>💻</span> Virtual Tools
+            </h2>
+            <p className="text-xs opacity-80 mb-4">
+              Interactive modes designed for student exploration.
+            </p>
+            <div className="space-y-3">
+              <Link
+                href="/activists/timeline"
+                className="block rounded-lg bg-background p-3 shadow-sm border border-border hover:border-primary transition-colors cursor-pointer"
+              >
+                <div className="font-bold text-sm flex items-center justify-between">
+                  Timeline Scavenger <span className="text-xs">↗</span>
+                </div>
+                <p className="text-xs opacity-60 mt-1">
+                  Find 5 events where art directly impacted a law or policy.
+                </p>
+              </Link>
+              <Link
+                href="/activists/map"
+                className="block rounded-lg bg-background p-3 shadow-sm border border-border hover:border-primary transition-colors cursor-pointer"
+              >
+                <div className="font-bold text-sm flex items-center justify-between">
+                  Map Odyssey <span className="text-xs">↗</span>
+                </div>
+                <p className="text-xs opacity-60 mt-1">
+                  Plan a walking tour visiting 3 murals within 1 mile.
+                </p>
+              </Link>
+            </div>
           </div>
         </div>
       </div>

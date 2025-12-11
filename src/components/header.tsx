@@ -50,7 +50,7 @@ const navigationData = [
     items: [
       { name: "Events", href: "/events", icon: Calendar },
       { name: "Zine Gallery", href: "/activists/zine", icon: BookOpen },
-
+      { name: "Zine Builder", href: "/zine/v2", icon: PenTool },
       { name: "Contribute", href: "/community/submit", icon: Heart },
     ]
   },
