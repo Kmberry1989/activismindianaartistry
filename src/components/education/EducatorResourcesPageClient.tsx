@@ -20,7 +20,7 @@ export default function EducatorResourcesPageClient() {
         {educatorResources.map(r => (
           <div
             key={r.id}
-            className="rounded-2xl border border-black/10 bg-white p-5 shadow-sm"
+            className="rounded-2xl border border-border bg-card p-5 shadow-sm text-card-foreground"
           >
             <div className="flex flex-wrap items-baseline justify-between gap-2">
               <div className="text-lg font-semibold">{r.title}</div>

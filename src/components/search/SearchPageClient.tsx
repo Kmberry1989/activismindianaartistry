@@ -24,13 +24,13 @@ export default function SearchPageClient() {
         </p>
       </div>
 
-      <div className="mb-6 rounded-2xl border border-black/10 bg-white p-4 shadow-sm">
+      <div className="mb-6 rounded-2xl border border-border bg-card p-4 shadow-sm text-card-foreground">
         <div className="text-xs font-semibold">Search the inventory</div>
         <input
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Try BLM, climate, murals, Indianapolis..."
-          className="mt-2 w-full rounded-xl border border-black/10 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-black/10"
+          className="mt-2 w-full rounded-xl border border-border bg-background px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-ring"
         />
         <div className="mt-2 text-[11px] opacity-60">
           This page is additive and does not change your homepage.
@@ -38,11 +38,11 @@ export default function SearchPageClient() {
       </div>
 
       {!query.trim() ? (
-        <div className="rounded-2xl border border-black/10 bg-white p-8 text-center text-sm opacity-70">
+        <div className="rounded-2xl border border-border bg-card p-8 text-center text-sm opacity-70 text-card-foreground">
           Start typing to see fuzzy matches.
         </div>
       ) : results.length === 0 ? (
-        <div className="rounded-2xl border border-black/10 bg-white p-8 text-center text-sm opacity-70">
+        <div className="rounded-2xl border border-border bg-card p-8 text-center text-sm opacity-70 text-card-foreground">
           No matches found.
         </div>
       ) : (

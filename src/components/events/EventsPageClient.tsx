@@ -52,14 +52,14 @@ export default function EventsPageClient({
         </div>
       </div>
 
-      <div className="mb-6 grid gap-3 rounded-2xl border border-black/10 bg-white p-4 shadow-sm sm:grid-cols-[1fr,auto] sm:items-end">
+      <div className="mb-6 grid gap-3 rounded-2xl border border-border bg-card p-4 shadow-sm sm:grid-cols-[1fr,auto] sm:items-end text-card-foreground">
         <label className="block">
           <div className="mb-1 text-xs font-semibold">Search events</div>
           <input
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Title, city, cause, venue..."
-            className="w-full rounded-xl border border-black/10 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-black/10"
+            className="w-full rounded-xl border border-border bg-background px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-ring"
           />
         </label>
 
@@ -74,7 +74,7 @@ export default function EventsPageClient({
       </div>
 
       {grouped.length === 0 ? (
-        <div className="rounded-2xl border border-black/10 bg-white p-8 text-center text-sm opacity-70">
+        <div className="rounded-2xl border border-border bg-card p-8 text-center text-sm opacity-70 text-card-foreground">
           No events match these filters yet.
         </div>
       ) : (
@@ -88,14 +88,14 @@ export default function EventsPageClient({
                 {events.map(e => (
                   <article
                     key={e.id}
-                    className="rounded-2xl border border-black/10 bg-white p-5 shadow-sm"
+                    className="rounded-2xl border border-border bg-card p-5 shadow-sm text-card-foreground"
                   >
                     <div className="flex items-start justify-between gap-3">
                       <h3 className="text-base font-semibold tracking-tight">
                         {e.title}
                       </h3>
                       {e.eventType ? (
-                        <span className="rounded-full border border-black/10 bg-black/5 px-2 py-0.5 text-[9px]">
+                        <span className="rounded-full border border-border bg-muted px-2 py-0.5 text-[9px]">
                           {e.eventType}
                         </span>
                       ) : null}
@@ -123,7 +123,7 @@ export default function EventsPageClient({
                         {e.causeTags.map(c => (
                           <span
                             key={`${e.id}-${c}`}
-                            className="rounded-full border border-black/10 bg-white px-2 py-0.5 text-[10px] opacity-70"
+                            className="rounded-full border border-border bg-card px-2 py-0.5 text-[10px] opacity-70"
                           >
                             {c}
                           </span>

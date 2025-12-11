@@ -53,13 +53,13 @@ export default function CollectionsPageClient({
         </p>
       </div>
 
-      <div className="mb-6 rounded-2xl border border-black/10 bg-white p-4 shadow-sm">
+      <div className="mb-6 rounded-2xl border border-border bg-card p-4 shadow-sm text-card-foreground">
         <div className="text-xs font-semibold">Find a theme</div>
         <input
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Search collections by title, summary, or cause..."
-          className="mt-2 w-full rounded-xl border border-black/10 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-black/10"
+          className="mt-2 w-full rounded-xl border border-border bg-background px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-ring"
         />
         <div className="mt-2 text-[11px] opacity-60">
           These collections are additive and won’t change your homepage layout.
@@ -67,7 +67,7 @@ export default function CollectionsPageClient({
       </div>
 
       {filteredCollections.length === 0 ? (
-        <div className="rounded-2xl border border-black/10 bg-white p-8 text-center text-sm opacity-70">
+        <div className="rounded-2xl border border-border bg-card p-8 text-center text-sm opacity-70 text-card-foreground">
           No collections match that search.
         </div>
       ) : (
@@ -75,7 +75,7 @@ export default function CollectionsPageClient({
           {filteredCollections.map(c => (
             <div key={c.id} className="relative">
               <CollectionCard collection={c} />
-              <div className="pointer-events-none absolute right-4 top-4 rounded-full border border-black/10 bg-white px-2 py-0.5 text-[9px] opacity-70">
+              <div className="pointer-events-none absolute right-4 top-4 rounded-full border border-border bg-card px-2 py-0.5 text-[9px] opacity-70">
                 ~{suggestionCounts[c.id] ?? 0} matching entries
               </div>
             </div>
