@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import Masonry from "react-masonry-css";
+
 import { Artist } from "@/lib/types";
 import { ArtistCard } from "@/components/artist-card";
 import { motion } from "framer-motion";
@@ -21,11 +21,7 @@ export function ArtistGallery({ artists }: ArtistGalleryProps) {
 
   return (
     <div className="w-full">
-      <Masonry
-        breakpointCols={breakpointColumnsObj}
-        className="flex w-auto -ml-4"
-        columnClassName="pl-4 bg-clip-padding"
-      >
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {artists.map((artist, index) => (
           <motion.div
             key={artist.id}
@@ -33,12 +29,12 @@ export function ArtistGallery({ artists }: ArtistGalleryProps) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.5, delay: index * 0.05 }} // Staggered delay
-            className="mb-4"
+            className="flex"
           >
             <ArtistCard artist={artist} priority={index < 8} />
           </motion.div>
         ))}
-      </Masonry>
+      </div>
     </div>
   );
 }

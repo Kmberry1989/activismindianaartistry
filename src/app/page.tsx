@@ -14,7 +14,7 @@ import { ArtistGallery } from '@/components/artist-gallery';
 import { HeroParallax } from '@/components/hero-parallax';
 import { artists } from '@/lib/artists-data';
 import { Header } from '@/components/header';
-import { Footer } from '@/components/footer';
+
 import { CurrentEventsWidget } from '@/components/current-events-widget';
 import { Search, SlidersHorizontal, ArrowDownAZ, Clock, X, RotateCcw, User, Palette } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -303,7 +303,7 @@ export default function Home() {
 
         <CurrentEventsWidget />
       </main>
-      <Footer />
+
     </div>
   );
 }
