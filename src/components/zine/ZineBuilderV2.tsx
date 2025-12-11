@@ -1,12 +1,13 @@
 "use client";
 
-import React, { useMemo, useState, useRef } from "react";
+import React, { useMemo, useState, useRef, useEffect } from "react";
 import jsPDF from "jspdf";
 import type { Artist } from "@/lib/types";
 import { ZINE_TEMPLATES, type ZineTemplateId } from "@/lib/zine/zine-templates";
-import { collectionsData } from "@/lib/collections-data";
-import { getCollectionBySlug, getCollectionEntries } from "@/lib/collections-utils";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Search, Plus, X, Star } from "lucide-react";
+import { safeGet } from "@/lib/local-storage";
 
 // Stamp Logic
 type StampType = "✊" | "🎨" | "📢" | "❤️" | "✨" | "🔥";
@@ -19,6 +20,8 @@ interface PlacedStamp {
   y: number; // Percentage (0-100)
 }
 
+const FAV_KEY = "inartact:favorites:v1";
+
 export default function ZineBuilderV2({
   artists,
   defaultIds
@@ -28,13 +31,32 @@ export default function ZineBuilderV2({
 }) {
   const [title, setTitle] = useState("Indiana Activist Art Zine");
   const [templateId, setTemplateId] = useState<ZineTemplateId>("standard");
-  const [collectionSlug, setCollectionSlug] = useState("");
-  const [customIds, setCustomIds] = useState(defaultIds ?? []);
+
+  // Selection State
+  const [selectedIds, setSelectedIds] = useState<string[]>(defaultIds ?? []);
+
+  // Asset Picker State
+  const [searchQuery, setSearchQuery] = useState("");
+  const [isPickerOpen, setIsPickerOpen] = useState(true);
 
   // Stamp State
   const [activeStamp, setActiveStamp] = useState<StampType | null>(null);
   const [placedStamps, setPlacedStamps] = useState<PlacedStamp[]>([]);
   const previewRef = useRef<HTMLDivElement>(null);
+
+  // Load favorites if requested via prop or button
+  const loadFavorites = () => {
+    const favs = safeGet<string[]>(FAV_KEY, []);
+    // Merge unique
+    setSelectedIds(prev => Array.from(new Set([...prev, ...favs])));
+  };
+
+  // If defaultIds changes (e.g. from parent), update selection
+  useEffect(() => {
+    if (defaultIds) {
+      setSelectedIds(prev => Array.from(new Set([...prev, ...defaultIds])));
+    }
+  }, [defaultIds]);
 
   const template = useMemo(
     () => ZINE_TEMPLATES.find(t => t.id === templateId) ?? ZINE_TEMPLATES[0],
@@ -42,16 +64,27 @@ export default function ZineBuilderV2({
   );
 
   const selectedArtists = useMemo(() => {
-    if (collectionSlug) {
-      const col = getCollectionBySlug(collectionsData, collectionSlug);
-      if (col) return getCollectionEntries(col, artists);
-    }
-    if (customIds.length) {
-      const set = new Set(customIds);
-      return artists.filter(a => set.has(a.id));
-    }
-    return artists.slice(0, 12);
-  }, [collectionSlug, customIds, artists]);
+    const set = new Set(selectedIds);
+    // Maintain order of selection if possible, or just filter. 
+    // Filtering by original list preserves "database order" which is cleaner for consistency.
+    return artists.filter(a => set.has(a.id));
+  }, [selectedIds, artists]);
+
+  // Filter for Asset Picker
+  const filteredAssets = useMemo(() => {
+    if (!searchQuery) return artists;
+    const lower = searchQuery.toLowerCase();
+    return artists.filter(a =>
+      a.artist.name.toLowerCase().includes(lower) ||
+      a.artwork.title.toLowerCase().includes(lower)
+    );
+  }, [artists, searchQuery]);
+
+  const toggleArtist = (id: string) => {
+    setSelectedIds(prev =>
+      prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]
+    );
+  };
 
   // Handle placing a stamp on the preview
   const handlePreviewClick = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -186,21 +219,80 @@ export default function ZineBuilderV2({
   }
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-8">
-      <div className="mb-6">
-        <h1 className="text-3xl font-bold tracking-tight">Zine Builder & Design Studio</h1>
-        <p className="mt-1 text-sm opacity-80">
-          Design your classroom zine. Use stamps to decorate, then download the PDF.
-        </p>
+    <div className="mx-auto max-w-7xl px-4 py-8">
+      <div className="mb-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <h1 className="text-3xl font-bold tracking-tight">Zine Studio</h1>
+          <p className="mt-1 text-sm opacity-80">
+            Curate your own collection of Indiana Activist Art.
+          </p>
+        </div>
+        <div className="flex gap-2">
+          <Button variant="outline" size="sm" onClick={loadFavorites}>
+            <Star className="w-4 h-4 mr-2" />
+            Add My Favorites
+          </Button>
+        </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
-        {/* LEFT: Controls */}
-        <div className="space-y-6">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+        {/* LEFT COLUMN: Asset Picker (New) */}
+        <div className="lg:col-span-3 lg:sticky lg:top-4 space-y-4 max-h-[80vh] flex flex-col">
+          <div className="bg-card border border-border rounded-xl p-4 shadow-sm flex-1 flex flex-col">
+            <h3 className="font-bold mb-3 flex items-center justify-between">
+              Artist Library
+              <span className="text-xs bg-muted px-2 py-1 rounded-full">{filteredAssets.length}</span>
+            </h3>
+
+            <div className="relative mb-4">
+              <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+              <Input
+                placeholder="Search artists..."
+                className="pl-9"
+                value={searchQuery}
+                onChange={e => setSearchQuery(e.target.value)}
+              />
+            </div>
+
+            <div className="overflow-y-auto flex-1 min-h-[300px] space-y-2 pr-2">
+              {filteredAssets.map(a => {
+                const isSelected = selectedIds.includes(a.id);
+                return (
+                  <button
+                    key={a.id}
+                    onClick={() => toggleArtist(a.id)}
+                    className={`w-full text-left p-3 rounded-lg border text-sm transition-all flex items-start justify-between group ${isSelected
+                        ? 'bg-primary/10 border-primary'
+                        : 'bg-background hover:bg-muted border-border'
+                      }`}
+                  >
+                    <div>
+                      <div className="font-semibold">{a.artist.name}</div>
+                      <div className="text-xs opacity-70 truncate">{a.artwork.title}</div>
+                    </div>
+                    {isSelected ? (
+                      <div className="text-primary bg-background rounded-full p-0.5"><X className="w-3 h-3" /></div>
+                    ) : (
+                      <div className="opacity-0 group-hover:opacity-100 text-muted-foreground"><Plus className="w-3 h-3" /></div>
+                    )}
+                  </button>
+                );
+              })}
+              {filteredAssets.length === 0 && (
+                <div className="text-center py-8 text-sm opacity-50">No artists found.</div>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* MIDDLE COLUMN: Design Controls */}
+        <div className="lg:col-span-4 space-y-6">
           {/* 1. Configuration */}
           <div className="space-y-4 rounded-2xl border border-border bg-card p-5 shadow-sm">
             <h2 className="font-bold text-lg flex items-center gap-2">
-              <span>1.</span> Configure
+              <span className="bg-primary text-primary-foreground w-6 h-6 rounded-full flex items-center justify-center text-xs">1</span>
+              Configure
             </h2>
 
             <label className="block">
@@ -212,47 +304,39 @@ export default function ZineBuilderV2({
               />
             </label>
 
-            <div className="grid grid-cols-2 gap-4">
-              <label className="block">
-                <span className="text-xs font-semibold mb-1 block">Template</span>
-                <select
-                  value={templateId}
-                  onChange={(e) => setTemplateId(e.target.value as ZineTemplateId)}
-                  className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm"
-                >
-                  {ZINE_TEMPLATES.map(t => (
-                    <option key={t.id} value={t.id}>{t.label}</option>
-                  ))}
-                </select>
-              </label>
+            <label className="block">
+              <span className="text-xs font-semibold mb-1 block">Template</span>
+              <select
+                value={templateId}
+                onChange={(e) => setTemplateId(e.target.value as ZineTemplateId)}
+                className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm"
+              >
+                {ZINE_TEMPLATES.map(t => (
+                  <option key={t.id} value={t.id}>{t.label}</option>
+                ))}
+              </select>
+            </label>
 
-              <label className="block">
-                <span className="text-xs font-semibold mb-1 block">Source Collection</span>
-                <select
-                  value={collectionSlug}
-                  onChange={(e) => setCollectionSlug(e.target.value)}
-                  className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm"
-                >
-                  <option value="">None (Use Defaults)</option>
-                  {collectionsData.map(c => (
-                    <option key={c.id} value={c.slug}>{c.title}</option>
-                  ))}
-                </select>
-              </label>
+            <div className="text-xs text-muted-foreground">
+              <p>Selected Items: <strong>{selectedIds.length}</strong></p>
+              <p>Pages: <strong>{Math.ceil(selectedIds.length / (template.columns === 1 ? 4 : 8))}</strong> (approx)</p>
             </div>
           </div>
 
           {/* 2. Decoration */}
           <div className="space-y-4 rounded-2xl border border-border bg-card p-5 shadow-sm">
             <h2 className="font-bold text-lg flex items-center gap-2 justify-between">
-              <div className="flex gap-2 items-center"><span>2.</span> Decorate</div>
+              <div className="flex gap-2 items-center">
+                <span className="bg-primary text-primary-foreground w-6 h-6 rounded-full flex items-center justify-center text-xs">2</span>
+                Decorate
+              </div>
               <div className="flex gap-2">
                 <Button variant="outline" size="sm" onClick={undoLastStamp} disabled={placedStamps.length === 0}>Undo</Button>
                 <Button variant="ghost" size="sm" onClick={clearStamps} disabled={placedStamps.length === 0} className="text-destructive hover:text-destructive">Clear All</Button>
               </div>
             </h2>
             <div className="p-3 bg-muted/30 rounded-xl border border-dashed border-border">
-              <p className="text-xs text-center mb-3 opacity-70">Click a stamp, then click on the preview to place it.</p>
+              <p className="text-xs text-center mb-3 opacity-70">Click a stamp, then click on the preview paper.</p>
               <div className="flex flex-wrap justify-center gap-3">
                 {STAMPS.map(stamp => (
                   <button
@@ -269,17 +353,20 @@ export default function ZineBuilderV2({
 
           {/* 3. Export */}
           <div className="rounded-2xl border border-primary/20 bg-primary/5 p-5">
-            <Button onClick={generate} size="lg" className="w-full font-bold shadow-lg">
+            <Button onClick={generate} size="lg" className="w-full font-bold shadow-lg" disabled={selectedArtists.length === 0}>
               Download PDF ⬇
             </Button>
+            {selectedArtists.length === 0 && (
+              <p className="text-center text-xs text-destructive mt-2">Select at least one artist to generate.</p>
+            )}
             <p className="text-center text-[10px] opacity-60 mt-2">
-              Generates a letter-sized PDF compatible with standard printers.
+              Generates a letter-sized PDF ready for print.
             </p>
           </div>
         </div>
 
-        {/* RIGHT: Live Preview */}
-        <div className="sticky top-6">
+        {/* RIGHT COLUMN: Live Preview */}
+        <div className="lg:col-span-5 sticky top-6">
           <div className="mb-2 flex items-center justify-between">
             <h2 className="font-bold text-lg">Live Preview</h2>
             <span className="text-xs uppercase tracking-wider opacity-60 font-medium">Page 1 Surface</span>
@@ -303,13 +390,19 @@ export default function ZineBuilderV2({
                 <p className="text-lg text-gray-700 mb-8">Curated from the Indiana Art Activist Inventory.</p>
 
                 <div className={`grid gap-8 ${template.columns === 2 ? 'grid-cols-2' : 'grid-cols-1'}`}>
-                  {selectedArtists.slice(0, template.columns === 1 ? 4 : 6).map(a => (
-                    <div key={a.id} className="border-b border-gray-300 pb-4">
-                      <div className="font-bold text-xl">{a.artist.name}</div>
-                      <div className="text-lg font-medium">{a.artwork.title}</div>
-                      <div className="text-sm text-gray-500 mt-1">{a.artwork.medium} • {a.artwork.city}</div>
+                  {selectedArtists.length === 0 ? (
+                    <div className="col-span-full py-12 text-center text-gray-400 border-2 border-dashed border-gray-300 rounded-xl">
+                      Select artists from the library to populate your zine!
                     </div>
-                  ))}
+                  ) : (
+                    selectedArtists.slice(0, template.columns === 1 ? 4 : 6).map(a => (
+                      <div key={a.id} className="border-b border-gray-300 pb-4">
+                        <div className="font-bold text-xl">{a.artist.name}</div>
+                        <div className="text-lg font-medium">{a.artwork.title}</div>
+                        <div className="text-sm text-gray-500 mt-1">{a.artwork.medium} • {a.artwork.city}</div>
+                      </div>
+                    ))
+                  )}
                 </div>
                 {selectedArtists.length > (template.columns === 1 ? 4 : 6) && (
                   <div className="mt-8 text-center text-gray-400 italic">...and more on next pages</div>
