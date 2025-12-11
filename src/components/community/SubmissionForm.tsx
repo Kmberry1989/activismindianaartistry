@@ -71,7 +71,25 @@ export default function SubmissionForm() {
     // 1. Save to local store (legacy/backup)
     const record = addSubmission(type, payload);
 
-    // 2. Actually submit to server
+    // 2. Open Mailto for actual submission
+    const subject = encodeURIComponent(`New Submission: ${TYPES.find(t => t.id === type)?.label}`);
+    const bodyContent = `
+Type: ${TYPES.find(t => t.id === type)?.label}
+Artist Name: ${artistName}
+Artwork Title: ${artworkTitle}
+City: ${city}
+State: ${state}
+Description: ${description}
+URLs: ${urlsRaw}
+Cause Tags: ${causeTags.join(", ")}
+Contact Name: ${contactName}
+Contact Email: ${contactEmail}
+    `.trim();
+
+    const body = encodeURIComponent(bodyContent);
+    window.location.href = `mailto:activismindianaart@gmail.com?subject=${subject}&body=${body}`;
+
+    // 3. (Optional) Log to server for debugging/records
     try {
       await fetch("/api/submissions", {
         method: "POST",
@@ -79,7 +97,7 @@ export default function SubmissionForm() {
         body: JSON.stringify({ type, ...payload })
       });
     } catch (err) {
-      console.error("Failed to submit to server:", err);
+      console.warn("Failed to log submission to server:", err);
     }
 
     setIsSubmitting(false);
@@ -255,17 +273,17 @@ export default function SubmissionForm() {
           />
         </label>
 
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="flex flex-col items-center justify-center gap-2 mt-6">
           <button
             type="button"
             onClick={submit}
-            className="rounded-xl bg-primary px-4 py-2 text-xs font-semibold text-primary-foreground hover:opacity-95 disabled:opacity-50"
+            className="w-full max-w-xs rounded-xl bg-primary px-8 py-3 text-sm font-semibold text-primary-foreground hover:opacity-95 disabled:opacity-50 transition-all shadow-md active:scale-95"
             disabled={isSubmitting}
           >
-            {isSubmitting ? "Submitting..." : "Submit"}
+            {isSubmitting ? "Opening Email..." : "Submit via Email"}
           </button>
-          <span className="text-[10px] opacity-60">
-            Sent to server (logged) + stored locally.
+          <span className="text-[10px] opacity-60 text-center max-w-xs">
+            This will open your default email client to send the submission directly to us.
           </span>
         </div>
 

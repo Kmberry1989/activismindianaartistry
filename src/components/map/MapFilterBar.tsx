@@ -4,6 +4,15 @@ import React, { useMemo } from "react";
 import type { Artist } from "@/lib/types";
 import type { FilterState } from "@/lib/filters";
 import { buildAvailableCauses, buildAvailableMediums, buildAvailableDecades } from "@/lib/filters";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Search } from "lucide-react";
+import { Input } from "@/components/ui/input";
 
 export default function MapFilterBar({
   artists,
@@ -18,65 +27,86 @@ export default function MapFilterBar({
   const mediums = useMemo(() => buildAvailableMediums(artists), [artists]);
   const decades = useMemo(() => buildAvailableDecades(artists), [artists]);
 
-  function toggle<T>(arr: T[] | undefined, item: T) {
-    const list = arr ?? [];
-    return list.includes(item) ? list.filter(x => x !== item) : [...list, item];
-  }
+  // Helper for single-select Cause (since user wants a dropdown list)
+  // Converting from multi-tag array to single value for the dropdown interface
+  const currentCause = value.causeTags?.[0] ?? "all";
+
+  const handleCauseChange = (newVal: string) => {
+    // If 'all' is selected, clear the filter. Otherwise set it as the single tag.
+    const newTags = newVal === "all" ? undefined : [newVal];
+    onChange({ ...value, causeTags: newTags });
+  };
+
+  const handleMediumChange = (newVal: string) => {
+    const newMeds = newVal === "all" ? undefined : [newVal];
+    onChange({ ...value, mediums: newMeds });
+  };
+
+  const handleDecadeChange = (newVal: string) => {
+    const newDecs = newVal === "all" ? undefined : [Number(newVal)];
+    onChange({ ...value, decades: newDecs });
+  };
 
   return (
     <div className="rounded-2xl border border-border bg-card p-3 shadow-sm text-card-foreground">
-      <div className="grid gap-3 md:grid-cols-[1fr,auto,auto,auto] md:items-center">
-        <input
-          value={value.query ?? ""}
-          onChange={(e) => onChange({ ...value, query: e.target.value || undefined })}
-          placeholder="Search map entries..."
-          className="w-full rounded-xl border border-border bg-background px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-primary/20 placeholder:text-muted-foreground"
-        />
+      <div className="grid gap-3 md:grid-cols-[1fr,200px,180px,140px] md:items-center">
 
-        <div className="flex flex-wrap gap-1">
-          {causes.slice(0, 6).map(c => {
-            const active = value.causeTags?.includes(c);
-            return (
-              <button
-                key={`map-cause-${c}`}
-                type="button"
-                onClick={() => onChange({ ...value, causeTags: toggle(value.causeTags, c) })}
-                className={[
-                  "rounded-full border px-2 py-0.5 text-[10px]",
-                  active ? "border-primary/40 bg-primary text-primary-foreground" : "border-border bg-background hover:bg-muted"
-                ].join(" ")}
-              >
-                {c}
-              </button>
-            );
-          })}
+        {/* Search */}
+        <div className="relative">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+          <Input
+            value={value.query ?? ""}
+            onChange={(e) => onChange({ ...value, query: e.target.value || undefined })}
+            placeholder="Search map entries..."
+            className="pl-9 h-10 text-sm w-full bg-background"
+          />
         </div>
 
-        <select
-          value={value.mediums?.[0] ?? ""}
-          onChange={(e) =>
-            onChange({ ...value, mediums: e.target.value ? [e.target.value] : undefined })
-          }
-          className="rounded-xl border border-border bg-background px-2 py-2 text-xs"
-        >
-          <option value="">All media</option>
-          {mediums.map(m => (
-            <option key={`map-med-${m}`} value={m}>{m}</option>
-          ))}
-        </select>
+        {/* Cause Dropdown */}
+        <Select value={currentCause} onValueChange={handleCauseChange}>
+          <SelectTrigger className="h-10 text-sm bg-background w-full">
+            <SelectValue placeholder="All Causes" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">All Causes</SelectItem>
+            {causes.map((c) => (
+              <SelectItem key={`cause-${c}`} value={c}>
+                {c}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
 
-        <select
-          value={value.decades?.[0] ?? ""}
-          onChange={(e) =>
-            onChange({ ...value, decades: e.target.value ? [Number(e.target.value)] : undefined })
-          }
-          className="rounded-xl border border-border bg-background px-2 py-2 text-xs"
-        >
-          <option value="">All decades</option>
-          {decades.map(d => (
-            <option key={`map-dec-${d}`} value={d}>{d}s</option>
-          ))}
-        </select>
+        {/* Medium Dropdown */}
+        <Select value={value.mediums?.[0] ?? "all"} onValueChange={handleMediumChange}>
+          <SelectTrigger className="h-10 text-sm bg-background w-full">
+            <SelectValue placeholder="All Media" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">All Media</SelectItem>
+            {mediums.map((m) => (
+              <SelectItem key={`med-${m}`} value={m}>
+                {m}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+
+        {/* Decade Dropdown */}
+        <Select value={value.decades?.[0]?.toString() ?? "all"} onValueChange={handleDecadeChange}>
+          <SelectTrigger className="h-10 text-sm bg-background w-full">
+            <SelectValue placeholder="All Decades" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">All Decades</SelectItem>
+            {decades.map((d) => (
+              <SelectItem key={`dec-${d}`} value={d.toString()}>
+                {d}s
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+
       </div>
     </div>
   );

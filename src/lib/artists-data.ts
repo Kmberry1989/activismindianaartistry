@@ -515,6 +515,7 @@ export const artists: Artist[] = [
       "latitude": 39.7751157,
       "longitude": -86.1660826,
       "categories": [],
+      "imageUrl": "/Images/Billy_Hoodoo.jpg",
       "searchQuery": "Billy Hoodoo Black Lives Matter Mural (Letter C) Indianapolis (Indiana Ave - Archived) Racial Justice",
       "news_media_coverage": []
     }
@@ -626,7 +627,7 @@ export const artists: Artist[] = [
       "bio": "Ashley Nora is a former chemist turned full-time artist and member of The Eighteen Art Collective. She is known for her realistic portraiture and large-scale murals that often feature human subjects surrounded by geometric or floral elements. She painted the \"E\" in the Black Lives Matter mural and uses her scientific background to bring a meticulous precision to her creative process.",
       "website": "ashleynoraart.com",
       "social_media": [
-        "@ashleynoraart"
+        "https://www.instagram.com/ashleynora_art/"
       ]
     },
     "artwork": {
@@ -640,6 +641,7 @@ export const artists: Artist[] = [
       "latitude": 39.7751157,
       "longitude": -86.1660826,
       "categories": [],
+      "imageUrl": "/Images/Ashley_Nora.jpg",
       "searchQuery": "Ashley Nora Black Lives Matter Mural (Letter R) Indianapolis (Indiana Ave - Archived) Racial Justice / Black Joy",
       "news_media_coverage": []
     }
@@ -666,6 +668,7 @@ export const artists: Artist[] = [
       "latitude": 39.7751157,
       "longitude": -86.1660826,
       "categories": [],
+      "imageUrl": "/Images/Kenneth_Hordge.jpg",
       "searchQuery": "Kenneth Hordge (Fingercreations) Black Lives Matter Mural (Fist) Indianapolis (Indiana Ave - Archived) Racial Justice",
       "news_media_coverage": []
     }
@@ -744,6 +747,7 @@ export const artists: Artist[] = [
       "latitude": 39.7751157,
       "longitude": -86.1660826,
       "categories": [],
+      "imageUrl": "/Images/Kevin_West.jpg",
       "searchQuery": "Kevin West Black Lives Matter Mural (Letter K) Indianapolis (Indiana Ave - Archived) Racial Justice / Police Brutality",
       "news_media_coverage": []
     }
@@ -756,7 +760,7 @@ export const artists: Artist[] = [
       "bio": "John G. Moore is a painter and pastor who is a member of The Eighteen Art Collective. His work often reflects his spiritual background and commitment to social uplift, featuring dignified portraits and scenes of African American life. He painted the second \"E\" in the Black Lives Matter mural, often using his art as a vehicle for his ministry and community message.",
       "website": "blcklst.com",
       "social_media": [
-        "@johngmoorejr"
+        "https://www.instagram.com/john.g.moore.jr/"
       ]
     },
     "artwork": {
@@ -770,6 +774,7 @@ export const artists: Artist[] = [
       "latitude": 39.7751157,
       "longitude": -86.1660826,
       "categories": [],
+      "imageUrl": "/Images/John_G_Moore.jpg",
       "searchQuery": "John G. Moore Black Lives Matter Mural (Letter L) Indianapolis (Indiana Ave - Archived) Racial Justice / Voting Rights",
       "news_media_coverage": []
     }
@@ -796,6 +801,7 @@ export const artists: Artist[] = [
       "latitude": 39.7751157,
       "longitude": -86.1660826,
       "categories": [],
+      "imageUrl": "/Images/Ess_Mckee.jpg",
       "searchQuery": "Ess McKee Black Lives Matter Mural (Letter S) Indianapolis (Indiana Ave - Archived) Racial Justice",
       "news_media_coverage": []
     }
@@ -822,6 +828,7 @@ export const artists: Artist[] = [
       "latitude": 39.7751157,
       "longitude": -86.1660826,
       "categories": [],
+      "imageUrl": "/Images/Wavy_Blayne.jpg",
       "searchQuery": "Wavy Blayne Black Lives Matter Mural (Letter M) Indianapolis (Indiana Ave - Archived) Racial Justice",
       "news_media_coverage": []
     }
@@ -834,7 +841,7 @@ export const artists: Artist[] = [
       "bio": "Harriet Watson is a painter and member of The Eighteen Art Collective known for her emotive and often historical portraiture. Her work frequently highlights the strength and resilience of Black women and historical figures. She painted the \"A\" in the Black Lives Matter mural, contributing a classical painterly touch to the project.",
       "website": "harrietwatsonart.com",
       "social_media": [
-        "@harrietwatsonart"
+        "https://www.instagram.com/harriet_wip/"
       ]
     },
     "artwork": {
@@ -848,6 +855,7 @@ export const artists: Artist[] = [
       "latitude": 39.7751157,
       "longitude": -86.1660826,
       "categories": [],
+      "imageUrl": "/Images/Harriet_Watson.jpg",
       "searchQuery": "Harriet Watson Black Lives Matter Mural (Letter A) Indianapolis (Indiana Ave - Archived) Racial Justice",
       "news_media_coverage": []
     }
@@ -860,7 +868,7 @@ export const artists: Artist[] = [
       "bio": "Deonna Craig is an Indianapolis-based artist, community leader, and the president of The Eighteen Art Collective. She works in acrylics and mixed media to create vibrant, often Afrocentric paintings that celebrate Black culture and history. She painted the first \"A\" in the Black Lives Matter mural and is a central organizer for the group's exhibitions and advocacy.",
       "website": "deonnacraigart.com",
       "social_media": [
-        "@deonna_craig"
+        "https://www.instagram.com/deonna_heartbeat/"
       ]
     },
     "artwork": {
@@ -874,6 +882,7 @@ export const artists: Artist[] = [
       "latitude": 39.7751157,
       "longitude": -86.1660826,
       "categories": [],
+      "imageUrl": "/Images/Deonna_Craig.jpg",
       "searchQuery": "Deonna Craig Black Lives Matter Mural (Letter V) Indianapolis (Indiana Ave - Archived) Racial Justice",
       "news_media_coverage": []
     }
@@ -1004,6 +1013,7 @@ export const artists: Artist[] = [
       "latitude": 39.7751157,
       "longitude": -86.1660826,
       "categories": [],
+      "imageUrl": "/Images/Rebecca_Robinson.jpg",
       "searchQuery": "Rebecca Robinson Black Lives Matter Mural (Letter L) Indianapolis (Indiana Ave - Archived) Racial Justice",
       "news_media_coverage": []
     }
@@ -1433,6 +1443,7 @@ export const artists: Artist[] = [
       "latitude": 39.7751157,
       "longitude": -86.1660826,
       "categories": [],
+      "imageUrl": "/Images/Kyng_Rhodes.jpg",
       "searchQuery": "Kyng Rhodes (Nathaniel Rhodes) Black Lives Matter Mural (Letter B) Indianapolis (Indiana Ave - Archived) Racial Justice",
       "news_media_coverage": []
     }
@@ -1617,6 +1628,7 @@ export const artists: Artist[] = [
       "latitude": 39.7751157,
       "longitude": -86.1660826,
       "categories": [],
+      "imageUrl": "/Images/Shane_Young.jpg",
       "searchQuery": "Shane Young (FITZ) Black Lives Matter Mural (Letter T) Indianapolis (Indiana Ave) Racial Justice",
       "news_media_coverage": []
     }
