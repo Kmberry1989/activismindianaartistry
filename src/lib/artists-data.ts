@@ -22,9 +22,7 @@ export const artists: Artist[] = [
       "isAlive": true,
       "bio": "This group is composed of the 18 Black visual artists who collaborated to paint the \"Black Lives Matter\" street mural on Indiana Avenue in Indianapolis in August 2020. The collective was formed to sustain the momentum of that moment, advocating for equity in the local art scene and organizing exhibitions like \"We. The Culture\" at Newfields. They represent a wide range of styles, from street art to fine portraiture, united by a mission of civic engagement and artistic excellence.",
       "website": "18artcollective.com",
-      "social_media": [
-        "IG: @thexviii"
-      ]
+      "social_media": []
     },
     "artwork": {
       "title": "Black Lives Matter Street Mural",
@@ -343,9 +341,7 @@ export const artists: Artist[] = [
       "isAlive": false,
       "bio": "Robert Indiana (born Robert Clark) was a preeminent Pop Artist associated with the 1960s movement, famous globally for his \"LOVE\" sculpture and print series. Though he spent much of his later career in Maine, he was born in New Castle, Indiana, and adopted the state's name as his own. His hard-edge painting style, use of stenciled typography, and bold primary colors are iconic in American art history.",
       "website": "robertindiana.com",
-      "social_media": [
-        "IG: @samuellevijones"
-      ]
+      "social_media": []
     },
     "artwork": {
       "title": "HOPE ",
@@ -368,7 +364,7 @@ export const artists: Artist[] = [
       "bio": "Samuel Levi Jones is an artist known for deconstructing institutional authority by physically dismantling encyclopedias, law books, and medical texts. He strips the covers off these books and stitches them together into grid-like abstract canvases, creating works that question the biases and exclusions found in recorded history. His work is visually striking while carrying deep sociopolitical critiques.",
       "website": "samuellevijones.com",
       "social_media": [
-        "@samuellevijones"
+        "@slevijones"
       ]
     },
     "artwork": {
@@ -395,7 +391,7 @@ export const artists: Artist[] = [
       "bio": "Rachel Kavathe is a sculptor and public artist whose work often draws inspiration from the natural world. She creates large-scale installations, often using steel and other durable materials to mimic organic forms like leaves, seed pods, or plants. Her work can be found in various parks and public spaces in Indiana, offering a serene interplay between industrial materials and nature.",
       "website": "rachelkavathe.com",
       "social_media": [
-        "@rachelkavathe_studio"
+        "@rachelkavathe"
       ]
     },
     "artwork": {
@@ -449,7 +445,7 @@ export const artists: Artist[] = [
       "bio": "Shelby Nower is a contemporary painter known for her stylized, colorful landscapes and architectural scenes. Her work often flattens perspective and uses a vibrant, almost pastel-neon palette to depict houses and neighborhoods, giving them a dreamlike or nostalgic quality. She frequently explores themes of home and memory in her compositions.",
       "website": "shelbynower.com",
       "social_media": [
-        "@shelbynower"
+        "@theindianapolispropylaeum"
       ]
     },
     "artwork": {
@@ -464,7 +460,7 @@ export const artists: Artist[] = [
       "latitude": null,
       "longitude": null,
       "categories": [],
-      "searchQuery": "Shelby Nower nINeteenth Indianapolis (Indiana Statehouse) Women's Suffrage",
+      "searchQuery": "Shelby Nower nINteenth Indianapolis (Indiana Statehouse) Women's Suffrage",
       "news_media_coverage": []
     }
   },
@@ -511,7 +507,7 @@ export const artists: Artist[] = [
       "date": "",
       "location": "Indianapolis (Indiana Ave - Archived)",
       "cause": "Racial Justice",
-      "credit": "",
+      "credit": "https://www.instagram.com/billyhoodoo/",
       "latitude": 39.7751157,
       "longitude": -86.1660826,
       "categories": [],
@@ -632,12 +628,12 @@ export const artists: Artist[] = [
     },
     "artwork": {
       "title": "Black Lives Matter Mural (Letter R)",
-      "description": "Created in August 2020 during the global protests following the murder of George Floyd, this project was organized by the artists and local activists to claim space on Indiana Avenue—a historic hub of Black culture in Indianapolis that had been decimated by gentrification and displacement. Unlike standard street text, each artist was assigned one letter to paint in their own style, turning the political slogan into a gallery of individual Black voices. The mural served as a direct protest against police brutality (referencing local cases like Michael Taylor) and a reclamation of Black history in a white-dominated space. Influence & Existence: The original street mural no longer exists; it was defaced shortly after completion and eventually paved over, highlighting the very tensions it sought to address. However, its impact was massive: it launched \"The Eighteen Art Collective,\" which continues to exhibit in major institutions like Newfields (\"We. The Culture\"). Replicas of the letters are now preserved at The Children's Museum of Indianapolis, ensuring the message endures beyond the pavement",
+      "description": "\n\nThe \"Black Lives Matter\" Mural on Indiana Avenue. Back Story & Activism: Created in August 2020 during the global protests following the murder of George Floyd, this project was organized by the artists and local activists to claim space on Indiana Avenue—a historic hub of Black culture in Indianapolis that had been decimated by gentrification and displacement. Unlike standard street text, each artist was assigned one letter to paint in their own style, turning the political slogan into a gallery of individual Black voices. The mural served as a direct protest against police brutality (referencing local cases like Michael Taylor) and a reclamation of Black history in a white-dominated space. Influence & Existence: The original street mural no longer exists; it was defaced shortly after completion and eventually paved over, highlighting the very tensions it sought to address. However, its impact was massive: it launched \"The Eighteen Art Collective,\" which continues to exhibit in major institutions like Newfields (\"We. The Culture\"). Replicas of the letters are now preserved at The Children's Museum of Indianapolis, ensuring the message endures beyond the pavement",
       "medium": "Street Paint",
       "date": "",
       "location": "Indianapolis (Indiana Ave - Archived)",
       "cause": "Racial Justice / Black Joy",
-      "credit": "",
+      "credit": "https://www.instagram.com/ashleynora_art/",
       "latitude": 39.7751157,
       "longitude": -86.1660826,
       "categories": [],
@@ -664,7 +660,7 @@ export const artists: Artist[] = [
       "date": "",
       "location": "Indianapolis (Indiana Ave - Archived)",
       "cause": "Racial Justice",
-      "credit": "",
+      "credit": "https://www.instagram.com/fingercreations/",
       "latitude": 39.7751157,
       "longitude": -86.1660826,
       "categories": [],
@@ -743,7 +739,7 @@ export const artists: Artist[] = [
       "date": "",
       "location": "Indianapolis (Indiana Ave - Archived)",
       "cause": "Racial Justice / Police Brutality",
-      "credit": "",
+      "credit": "https://www.instagram.com/kevinwestart/",
       "latitude": 39.7751157,
       "longitude": -86.1660826,
       "categories": [],
@@ -770,7 +766,7 @@ export const artists: Artist[] = [
       "date": "",
       "location": "Indianapolis (Indiana Ave - Archived)",
       "cause": "Racial Justice / Voting Rights",
-      "credit": "",
+      "credit": "https://www.instagram.com/john.g.moore.jr/",
       "latitude": 39.7751157,
       "longitude": -86.1660826,
       "categories": [],
@@ -797,7 +793,7 @@ export const artists: Artist[] = [
       "date": "",
       "location": "Indianapolis (Indiana Ave - Archived)",
       "cause": "Racial Justice",
-      "credit": "",
+      "credit": "https://www.instagram.com/essmckee/",
       "latitude": 39.7751157,
       "longitude": -86.1660826,
       "categories": [],
@@ -824,7 +820,7 @@ export const artists: Artist[] = [
       "date": "",
       "location": "Indianapolis (Indiana Ave - Archived)",
       "cause": "Racial Justice",
-      "credit": "",
+      "credit": "https://www.instagram.com/wavyblayne/",
       "latitude": 39.7751157,
       "longitude": -86.1660826,
       "categories": [],
@@ -851,7 +847,7 @@ export const artists: Artist[] = [
       "date": "",
       "location": "Indianapolis (Indiana Ave - Archived)",
       "cause": "Racial Justice",
-      "credit": "",
+      "credit": "https://www.instagram.com/harriet_wip/",
       "latitude": 39.7751157,
       "longitude": -86.1660826,
       "categories": [],
@@ -868,7 +864,7 @@ export const artists: Artist[] = [
       "bio": "Deonna Craig is an Indianapolis-based artist, community leader, and the president of The Eighteen Art Collective. She works in acrylics and mixed media to create vibrant, often Afrocentric paintings that celebrate Black culture and history. She painted the first \"A\" in the Black Lives Matter mural and is a central organizer for the group's exhibitions and advocacy.",
       "website": "deonnacraigart.com",
       "social_media": [
-        "https://www.instagram.com/deonna_heartbeat/"
+        "@deonna_heartbeat"
       ]
     },
     "artwork": {
@@ -878,7 +874,7 @@ export const artists: Artist[] = [
       "date": "",
       "location": "Indianapolis (Indiana Ave - Archived)",
       "cause": "Racial Justice",
-      "credit": "",
+      "credit": "https://www.instagram.com/deonna_heartbeat/",
       "latitude": 39.7751157,
       "longitude": -86.1660826,
       "categories": [],
@@ -999,7 +995,7 @@ export const artists: Artist[] = [
       "bio": "Rebecca Robinson is a mixed-media artist and member of The Eighteen Art Collective, known for her unique use of unconventional materials like concrete and tar on canvas. Her work often explores fashion, history, and texture, creating gritty yet elegant compositions. She painted the \"R\" in the Black Lives Matter mural.",
       "website": "psnob.com",
       "social_media": [
-        "@psnob"
+        "@bodrega"
       ]
     },
     "artwork": {
@@ -1009,7 +1005,7 @@ export const artists: Artist[] = [
       "date": "",
       "location": "Indianapolis (Indiana Ave - Archived)",
       "cause": "Racial Justice",
-      "credit": "",
+      "credit": "https://www.instagram.com/psnob/",
       "latitude": 39.7751157,
       "longitude": -86.1660826,
       "categories": [],
@@ -1214,9 +1210,7 @@ export const artists: Artist[] = [
       "isAlive": true,
       "bio": "Brose Partington is a sculptor known for his kinetic works that incorporate movement, video, and mechanical systems. He often builds machines that track the viewer or interact with the environment, exploring themes of surveillance and technology. His work is industrial and precise, often utilizing steel, motors, and custom electronics.",
       "website": "brosepartington.com",
-      "social_media": [
-        "@brosepartington"
-      ]
+      "social_media": []
     },
     "artwork": {
       "title": "Harvesting Knowledge",
@@ -1241,9 +1235,7 @@ export const artists: Artist[] = [
       "isAlive": true,
       "bio": "Tiffany Black is a painter and muralist who specializes in community-based public art. She often works with neighborhood groups to design and execute murals that reflect local history and identity. Her style is generally realistic and narrative, aimed at storytelling and community building.",
       "website": "tblack.co",
-      "social_media": [
-        "@tiffanyblackart"
-      ]
+      "social_media": []
     },
     "artwork": {
       "title": "August 15 (Mural)",
@@ -1268,9 +1260,7 @@ export const artists: Artist[] = [
       "isAlive": true,
       "bio": "Artur Silva is a Brazil-native visual artist, and Kyle Long is a DJ and music journalist; together (often under the banner of \"Cultural Cannibals\"), they explore the intersection of visual art and global music. Silva creates video installations and mixed media works, while Long curates the sonic landscape, both focusing on cross-cultural exchange and the diaspora experience in Indianapolis.",
       "website": "artursilva.com",
-      "social_media": [
-        "@artur_silva"
-      ]
+      "social_media": []
     },
     "artwork": {
       "title": "Cultural Cannibal",
@@ -1321,9 +1311,7 @@ export const artists: Artist[] = [
       "isAlive": true,
       "bio": "Shawn Michael Warren is a realist painter known for his incredibly detailed and epic narrative paintings. He gained national attention for his mural of Oprah Winfrey in Chicago, but he has deep ties to the Midwest/Indiana area. His work focuses on bringing underrepresented historical narratives to life with the scale and technique of classical history painting.",
       "website": "shawnmichaelwarren.com",
-      "social_media": [
-        "@shawnmichaelwarren"
-      ]
+      "social_media": []
     },
     "artwork": {
       "title": "The World's Fastest",
@@ -1376,7 +1364,7 @@ export const artists: Artist[] = [
       "bio": "D. Del Reverda-Jennings is a self-taught sculptor and painter whose work is deeply rooted in African symbolism and spiritual themes. She often creates totemic sculptures and assemblages using found objects, celebrating the divine feminine and ancestral connections. She is also a curator and advocate for Black artists in Indiana.",
       "website": "indyarts.org/artist/d-del-reverda-jennings",
       "social_media": [
-        "@ddelreverdajennings"
+        "@delreverdajenningscreates"
       ]
     },
     "artwork": {
@@ -1402,9 +1390,7 @@ export const artists: Artist[] = [
       "isAlive": true,
       "bio": "Walter \"Lobyn\" Hamilton is an artist who creates portraits using smashed and cut vinyl records. He arranges the jagged shards of vinyl to form the faces of musical icons, effectively using the medium of music to depict its creators. His work is textured, dynamic, and directly connects the subject matter to the material.",
       "website": "lobynhamilton.com",
-      "social_media": [
-        "@lobynhamilton"
-      ]
+      "social_media": []
     },
     "artwork": {
       "title": "What I Have Is What You Have",
@@ -1439,7 +1425,7 @@ export const artists: Artist[] = [
       "date": "August 2020",
       "location": "Indianapolis (Indiana Ave - Archived)",
       "cause": "Racial Justice",
-      "credit": "",
+      "credit": "https://www.instagram.com/kyngrhodes/",
       "latitude": 39.7751157,
       "longitude": -86.1660826,
       "categories": [],
@@ -1624,7 +1610,7 @@ export const artists: Artist[] = [
       "date": "August 2020",
       "location": "Indianapolis (Indiana Ave)",
       "cause": "Racial Justice",
-      "credit": "",
+      "credit": "https://www.instagram.com/artbyfitz/",
       "latitude": 39.7751157,
       "longitude": -86.1660826,
       "categories": [],
@@ -1640,9 +1626,7 @@ export const artists: Artist[] = [
       "isAlive": true,
       "bio": "Lisa Sears is a photographer known for capturing the vintage typography and fading neon signs of the Midwest. Her work documents roadside Americana, preserving the visual history of old motels, diners, and theaters before they disappear. She frames these objects as sculptural artifacts of a bygone era.",
       "website": "lisasearsart.com",
-      "social_media": [
-        "@lisasearsart"
-      ]
+      "social_media": []
     },
     "artwork": {
       "title": "Principio Obstate (Statue of Liberty)",
@@ -1668,7 +1652,7 @@ export const artists: Artist[] = [
       "bio": "Megan Jefferson is a painter based at the Harrison Center known for her \"color field\" landscapes. She uses layers of oil and acrylic wash to create atmospheric, hazy scenes that evoke the sky, water, or horizons without being strictly realistic. Her work focuses on mood, light, and the emotional resonance of color.",
       "website": "indyarts.org/artist/megan-jefferson",
       "social_media": [
-        "@meganjeffersonart"
+        "https://www.instagram.com/megsj1art/"
       ]
     },
     "artwork": {
@@ -1678,8 +1662,8 @@ export const artists: Artist[] = [
       "date": "Ongoing",
       "location": "Indianapolis (Edington Gallery)",
       "cause": "Mental Health / Color Therapy",
-      "imageUrl": "/Images/MeganJefferson_MuralMap_DeptOfPublicWords.pdf",
-      "credit": "https://www.jeffersonartstudio.com/murals",
+      "imageUrl": "/Images/Megan_Jefferson.jpg",
+      "credit": "https://www.instagram.com/megsj1art/",
       "latitude": null,
       "longitude": null,
       "categories": [],
