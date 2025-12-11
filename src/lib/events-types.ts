@@ -7,6 +7,7 @@ export type EventType =
   | "protest"
   | "community"
   | "fundraiser"
+  | "festival"
   | "other";
 
 export interface ActivistArtEvent {

@@ -38,7 +38,10 @@ export default function SubmissionForm() {
   const [description, setDescription] = useState("");
   const [urlsRaw, setUrlsRaw] = useState("");
   const [causeTags, setCauseTags] = useState<CauseTag[]>([]);
+  const [contactName, setContactName] = useState("");
+  const [contactEmail, setContactEmail] = useState("");
   const [doneId, setDoneId] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const availableCauses = useMemo(() => buildAvailableCauses(artistsData), []);
 
@@ -46,22 +49,40 @@ export default function SubmissionForm() {
     setCauseTags(prev => (prev.includes(tag) ? prev.filter(t => t !== tag) : [...prev, tag]));
   }
 
-  function submit() {
+  async function submit() {
+    setIsSubmitting(true);
     const urls = urlsRaw
       .split(/\n|,/)
       .map(s => s.trim())
       .filter(Boolean);
 
-    const record = addSubmission(type, {
+    const payload = {
       artistName: artistName.trim() || undefined,
       artworkTitle: artworkTitle.trim() || undefined,
       city: city.trim() || undefined,
       state: state.trim() || undefined,
       causeTags: causeTags.length ? causeTags : undefined,
       description: description.trim() || undefined,
-      urls: urls.length ? urls : undefined
-    });
+      urls: urls.length ? urls : undefined,
+      contactName: contactName.trim() || undefined,
+      contactEmail: contactEmail.trim() || undefined
+    };
 
+    // 1. Save to local store (legacy/backup)
+    const record = addSubmission(type, payload);
+
+    // 2. Actually submit to server
+    try {
+      await fetch("/api/submissions", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ type, ...payload })
+      });
+    } catch (err) {
+      console.error("Failed to submit to server:", err);
+    }
+
+    setIsSubmitting(false);
     setDoneId(record.id);
 
     // Light reset
@@ -71,6 +92,7 @@ export default function SubmissionForm() {
     setDescription("");
     setUrlsRaw("");
     setCauseTags([]);
+    // Don't reset contact info, user might submit another
   }
 
   const activeHelp = TYPES.find(t => t.id === type)?.help ?? "";
@@ -137,6 +159,28 @@ export default function SubmissionForm() {
               onChange={(e) => setArtworkTitle(e.target.value)}
               className="w-full rounded-xl border border-border bg-background px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-ring"
               placeholder="Optional"
+            />
+          </label>
+        </div>
+
+        <div className="grid gap-3 sm:grid-cols-2">
+          <label className="block">
+            <div className="mb-1 text-xs font-semibold">Contact Name</div>
+            <input
+              value={contactName}
+              onChange={(e) => setContactName(e.target.value)}
+              className="w-full rounded-xl border border-border bg-background px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-ring"
+              placeholder="Your name"
+            />
+          </label>
+
+          <label className="block">
+            <div className="mb-1 text-xs font-semibold">Contact Email</div>
+            <input
+              value={contactEmail}
+              onChange={(e) => setContactEmail(e.target.value)}
+              className="w-full rounded-xl border border-border bg-background px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-ring"
+              placeholder="your@email.com"
             />
           </label>
         </div>
@@ -215,12 +259,13 @@ export default function SubmissionForm() {
           <button
             type="button"
             onClick={submit}
-            className="rounded-xl bg-primary px-4 py-2 text-xs font-semibold text-primary-foreground hover:opacity-95"
+            className="rounded-xl bg-primary px-4 py-2 text-xs font-semibold text-primary-foreground hover:opacity-95 disabled:opacity-50"
+            disabled={isSubmitting}
           >
-            Submit
+            {isSubmitting ? "Submitting..." : "Submit"}
           </button>
           <span className="text-[10px] opacity-60">
-            Stored locally for now. You can export from the admin page later.
+            Sent to server (logged) + stored locally.
           </span>
         </div>
 

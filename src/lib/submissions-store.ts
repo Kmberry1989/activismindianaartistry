@@ -13,6 +13,8 @@ export interface SubmissionPayloadBase {
   causeTags?: CauseTag[];
   description?: string;
   urls?: string[];
+  contactName?: string;
+  contactEmail?: string;
 }
 
 export interface SubmissionRecord {
