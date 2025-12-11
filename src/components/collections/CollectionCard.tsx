@@ -6,7 +6,7 @@ export default function CollectionCard({ collection }: { collection: Collection 
   return (
     <Link
       href={`/collections/${collection.slug}`}
-      className="group block rounded-2xl border border-black/10 bg-white p-5 shadow-sm transition hover:shadow-md"
+      className="group block rounded-2xl border border-border bg-card p-5 shadow-sm transition hover:shadow-md text-card-foreground"
     >
       <div className="flex items-start justify-between gap-3">
         <div>
@@ -19,7 +19,7 @@ export default function CollectionCard({ collection }: { collection: Collection 
             </p>
           ) : null}
         </div>
-        <span className="rounded-full border border-black/10 bg-black/5 px-2 py-0.5 text-[9px]">
+        <span className="rounded-full border border-border bg-muted px-2 py-0.5 text-[9px]">
           Collection
         </span>
       </div>
@@ -29,7 +29,7 @@ export default function CollectionCard({ collection }: { collection: Collection 
           {collection.causeTags.map(c => (
             <span
               key={`${collection.id}-${c}`}
-              className="rounded-full border border-black/10 bg-white px-2 py-0.5 text-[10px] opacity-70 group-hover:opacity-100"
+              className="rounded-full border border-border bg-card px-2 py-0.5 text-[10px] opacity-70 group-hover:opacity-100"
             >
               {c}
             </span>

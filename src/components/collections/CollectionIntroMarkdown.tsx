@@ -16,7 +16,7 @@ export default function CollectionIntroMarkdown({
   if (!markdown) return null;
 
   return (
-    <div className="prose prose-sm max-w-none rounded-2xl border border-black/10 bg-white p-5 shadow-sm">
+    <div className="prose prose-sm max-w-none rounded-2xl border border-border bg-card p-5 shadow-sm text-card-foreground">
       <ReactMarkdown>
         {markdown}
       </ReactMarkdown>

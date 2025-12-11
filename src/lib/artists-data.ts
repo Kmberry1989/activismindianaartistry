@@ -38,6 +38,7 @@ export const artists: Artist[] = [
       "longitude": -86.1660826,
       "categories": [],
       "searchQuery": "The Eighteen Art Collective Black Lives Matter Street Mural Indianapolis (Indiana Avenue) Racial Justice / BLM",
+      "imageUrl": "/theeighteenartcollective.jpg",
       "news_media_coverage": []
     }
   },
@@ -59,7 +60,7 @@ export const artists: Artist[] = [
       "date": "Aug. 2020",
       "location": "Indianapolis (Orig: 32 E. Washington; Archived: Ind. State Museum)",
       "cause": "Civil Rights / Police Brutality",
-      "imageUrl": "/Images/GaryGee_WeThePeople .png",
+      "imageUrl": "/Images/GaryGee_WeThePeople.png",
       "credit": "The We The People mural installation in place at 32 E. Washington Street, 2020 (Courtesy of Indy Arts Council)",
       "latitude": 39.7673788,
       "longitude": -86.1569878,
@@ -171,6 +172,7 @@ export const artists: Artist[] = [
       "longitude": -86.1387615,
       "categories": [],
       "searchQuery": "Shauta Marsh & Jim Walker (Big Car Collaborative)  Social Alchemy  Indianapolis (Tube Factory / Garfield Park) Community Building / Utopia",
+      "imageUrl": "/socialalchemy.jpg",
       "news_media_coverage": []
     }
   },
@@ -197,6 +199,7 @@ export const artists: Artist[] = [
       "longitude": -86.1851419,
       "categories": [],
       "searchQuery": "May Wright Sewall Founding the Art Association of Indianapolis Indianapolis (Art Association / Herron / Newfields) Women's Suffrage / Education",
+      "imageUrl": "/maywrightsewall.jpg",
       "news_media_coverage": []
     }
   },
