@@ -287,40 +287,46 @@ export default function ZineBuilderV2({
 
           {/* The Preview container mimics Letter Size aspect ratio (8.5 x 11) -> 0.7727 */}
           <div
-            ref={previewRef}
-            onClick={handlePreviewClick}
-            className={`relative w-full aspect-[0.7727] bg-white border shadow-2xl rounded-sm overflow-hidden transition-all ${activeStamp ? 'cursor-crosshair ring-2 ring-primary ring-offset-4' : 'cursor-default'}`}
+            className="relative w-full rounded-sm overflow-hidden border shadow-xl bg-neutral-100 dark:bg-neutral-200 transition-all"
+            style={{ aspectRatio: "0.7727 " }}
           >
-            {/* Simulated Content Layer */}
-            <div className="absolute inset-0 p-8 select-none pointer-events-none opacity-80 scale-[0.6] origin-top-left w-[166%] h-[166%]">
-              {/* We scale content down because HTML px != PDF pt, just an approximation */}
-              <h1 className="text-4xl font-bold mb-4">{title}</h1>
-              <p className="text-lg text-gray-600 mb-8">Curated from the Indiana Art Activist Inventory.</p>
+            {/* Visual "Paper" Surface (Always White for PDF accuracy) */}
+            <div
+              ref={previewRef}
+              onClick={handlePreviewClick}
+              className={`absolute inset-0 bg-white ${activeStamp ? 'cursor-crosshair ring-4 ring-primary ring-inset' : 'cursor-default'}`}
+            >
+              {/* Simulated Content Layer */}
+              <div className="absolute inset-0 p-8 select-none pointer-events-none opacity-90 scale-[0.6] origin-top-left w-[166%] h-[166%] text-black font-sans">
+                {/* We force text-black and font-sans to mimic PDF output, ignoring theme */}
+                <h1 className="text-4xl font-bold mb-4 leading-tight">{title}</h1>
+                <p className="text-lg text-gray-700 mb-8">Curated from the Indiana Art Activist Inventory.</p>
 
-              <div className={`grid gap-8 ${template.columns === 2 ? 'grid-cols-2' : 'grid-cols-1'}`}>
-                {selectedArtists.slice(0, template.columns === 1 ? 4 : 6).map(a => (
-                  <div key={a.id} className="border-b pb-4">
-                    <div className="font-bold text-xl">{a.artist.name}</div>
-                    <div className="text-lg">{a.artwork.title}</div>
-                    <div className="text-sm text-gray-500 mt-1">{a.artwork.medium} • {a.artwork.city}</div>
-                  </div>
-                ))}
+                <div className={`grid gap-8 ${template.columns === 2 ? 'grid-cols-2' : 'grid-cols-1'}`}>
+                  {selectedArtists.slice(0, template.columns === 1 ? 4 : 6).map(a => (
+                    <div key={a.id} className="border-b border-gray-300 pb-4">
+                      <div className="font-bold text-xl">{a.artist.name}</div>
+                      <div className="text-lg font-medium">{a.artwork.title}</div>
+                      <div className="text-sm text-gray-500 mt-1">{a.artwork.medium} • {a.artwork.city}</div>
+                    </div>
+                  ))}
+                </div>
+                {selectedArtists.length > (template.columns === 1 ? 4 : 6) && (
+                  <div className="mt-8 text-center text-gray-400 italic">...and more on next pages</div>
+                )}
               </div>
-              {selectedArtists.length > (template.columns === 1 ? 4 : 6) && (
-                <div className="mt-8 text-center text-gray-400 italic">...and more on next pages</div>
-              )}
+
+              {/* Stamps Layer */}
+              {placedStamps.map(stamp => (
+                <div
+                  key={stamp.id}
+                  className="absolute text-4xl select-none pointer-events-none transform -translate-x-1/2 -translate-y-1/2"
+                  style={{ left: `${stamp.x}%`, top: `${stamp.y}%` }}
+                >
+                  {stamp.type}
+                </div>
+              ))}
             </div>
-
-            {/* Stamps Layer */}
-            {placedStamps.map(stamp => (
-              <div
-                key={stamp.id}
-                className="absolute text-4xl select-none pointer-events-none transform -translate-x-1/2 -translate-y-1/2"
-                style={{ left: `${stamp.x}%`, top: `${stamp.y}%` }}
-              >
-                {stamp.type}
-              </div>
-            ))}
           </div>
 
           <p className="text-center text-xs text-muted-foreground mt-4">

@@ -90,6 +90,7 @@ export const artists: Artist[] = [
       "longitude": -86.161047,
       "categories": [],
       "searchQuery": "Mechi Shakur (Demetrius Green) Blkkk Lives Don't Matter (Part of Murals for Racial Justice) Indianapolis (Orig: Downtown; Archived: Ind. State Museum/Library) Racial Justice",
+      "imageUrl": "/Images/DemetriusGreen_BLKKK LivesDon_tMatter.jpg",
       "news_media_coverage": []
     }
   },
@@ -224,6 +225,7 @@ export const artists: Artist[] = [
       "longitude": -85.1018235,
       "categories": [],
       "searchQuery": "Andre Portee (AbsorbALL) McMillen Park Basketball Court Murals Fort Wayne (McMillen Park) Racial Justice / Community",
+      "imageUrl": "/Images/McMillenParkMurals_AndrePortee.png",
       "news_media_coverage": []
     }
   },
@@ -331,6 +333,7 @@ export const artists: Artist[] = [
       "longitude": -86.1858349,
       "categories": [],
       "searchQuery": "Robert (Clark) Indiana The Confederacy: Mississippi Various Collections (e.g., Miami Univ. Art Museum) Civil Rights",
+      "imageUrl": "/Images/RobertIndiana_Mississippi.jpeg",
       "news_media_coverage": []
     }
   },
@@ -353,6 +356,7 @@ export const artists: Artist[] = [
       "credit": "",
       "categories": [],
       "searchQuery": "Robert (Clark) Indiana HOPE  Various Public Plazas (NYC, etc.) Political Change (Hope)",
+      "imageUrl": "/Images/RobertIndiana_Hope.jpg",
       "news_media_coverage": []
     }
   },
@@ -536,7 +540,8 @@ export const artists: Artist[] = [
       "cause": "Environmental Connection",
       "credit": "",
       "categories": [],
-      "searchQuery": "Justin Roberts & Shannon Davis-Roberts (Walk the Willow) Walk the Willow Sculptures Various (Nature Parks) Environmental Connection",
+      "searchQuery": "Justin Roberts & Shannon Davis-Roberts (Walk the Willow) Walk the Willow (Living Sculpture) Indianapolis (Art Center) Environmental / Public Space",
+      "imageUrl": "/Images/JustinRoberts_WalkTheWillow.jpg",
       "news_media_coverage": []
     }
   },
@@ -563,6 +568,7 @@ export const artists: Artist[] = [
       "longitude": -86.2500066,
       "categories": [],
       "searchQuery": "Angelica Frausto (Nerdy Brown Kid) Justice for Migrant Communities South Bend Gender & LGBTQ+ Rights",
+      "imageUrl": "/Images/AngelicaFrausto_JusticeforMigrantComm.jpg",
       "news_media_coverage": []
     }
   },
@@ -611,7 +617,8 @@ export const artists: Artist[] = [
       "cause": "Multiculturalism / Migration",
       "credit": "https://www.indystar.com/picture-gallery/news/2020/11/21/racial-justice-focus-art-display-indianapolis-central-library/6374181002/",
       "categories": [],
-      "searchQuery": "Nasreen Khan Mother & Child / Breathe Indianapolis Multiculturalism / Migration",
+      "searchQuery": "Nasreen Khan Blue Woman (and poetry) Indianapolis Identity / Feminism",
+      "imageUrl": "/nasreenkhanbluewoman.webp",
       "news_media_coverage": []
     }
   },
@@ -904,6 +911,7 @@ export const artists: Artist[] = [
       "credit": " https://www.instagram.com/p/DMFqRA_sALO/",
       "categories": [],
       "searchQuery": "Danicia Monét (Danicia Malone) Black Poetics of Place, BlackSpace Indianapolis (Co-Founder)/ Rokh (Founder) Indianapolis Racial Justice / Urban Design",
+      "imageUrl": "/Images/DaniciaMonetMalone.jpg",
       "news_media_coverage": []
     }
   },
@@ -983,7 +991,8 @@ export const artists: Artist[] = [
       "latitude": 39.7751157,
       "longitude": -86.1660826,
       "categories": [],
-      "searchQuery": "Amiah Mims Black Lives Matter Mural (Letter A) Indianapolis (Indiana Ave - Archived) Racial Justice / Resilience",
+      "searchQuery": "Amiah Mims Use Your Voice Indianapolis (Downtown) Racial Justice / Voting Rights",
+      "imageUrl": "/Images/Amiah_Mims.jpg",
       "news_media_coverage": []
     }
   },
@@ -1274,6 +1283,7 @@ export const artists: Artist[] = [
       "longitude": -86.1583502,
       "categories": [],
       "searchQuery": "Artur Silva/ Kyle Long Cultural Cannibal Indianapolis (Gainbridge Fieldhouse) Cultural Critique / History",
+      "imageUrl": "/Images/Artur Silva_Cultural Cannibal.jpg",
       "news_media_coverage": []
     }
   },
@@ -1403,7 +1413,8 @@ export const artists: Artist[] = [
       "latitude": 39.7683331,
       "longitude": -86.1583502,
       "categories": [],
-      "searchQuery": "Lobyn Hamilton (Walter “Lobyn” Hamilton) What I Have Is What You Have Indianapolis Music History / Culture",
+      "searchQuery": "Lobyn Hamilton (Walter “Lobyn” Hamilton) What I Have Is What You Have Indianapolis (Central Library) Music / Cultural Heritage",
+      "imageUrl": "/Images/LobynHamilton_What I Have Is What You Have.jpg",
       "news_media_coverage": []
     }
   },
@@ -1454,7 +1465,8 @@ export const artists: Artist[] = [
       "cause": "Environmental Justice / Urban Renewal",
       "credit": "https://indynow2010ls.wixsite.com/website-5/projects",
       "categories": [],
-      "searchQuery": "Phyllis Boyd RECLAIM Project Indianapolis (Riverside / various parks) Environmental Justice / Urban Renewal",
+      "searchQuery": "Phyllis Boyd RECLAIM Project Indianapolis (Near Eastside) Environmental / Public Space",
+      "imageUrl": "/Images/Phyllis Viola Boyd_RECLAIM Project.jpg",
       "news_media_coverage": []
     }
   },
@@ -1535,6 +1547,7 @@ export const artists: Artist[] = [
       "longitude": -86.1660826,
       "categories": [],
       "searchQuery": "Fingers (Graffiti Artist) Black Lives Matter Mural (Fist) Indianapolis (Indiana Ave) Racial Justice",
+      "imageUrl": "/placeholder.svg",
       "news_media_coverage": []
     }
   },
