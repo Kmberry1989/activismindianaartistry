@@ -61,10 +61,9 @@ export default function CollectionsPageClient({
           placeholder="Search collections by title, summary, or cause..."
           className="mt-2 w-full rounded-xl border border-border bg-background px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-ring"
         />
-        <div className="mt-2 text-[11px] opacity-60">
-          These collections are additive and won’t change your homepage layout.
-        </div>
+
       </div>
+
 
       {filteredCollections.length === 0 ? (
         <div className="rounded-2xl border border-border bg-card p-8 text-center text-sm opacity-70 text-card-foreground">
@@ -75,8 +74,8 @@ export default function CollectionsPageClient({
           {filteredCollections.map(c => (
             <div key={c.id} className="relative">
               <CollectionCard collection={c} />
-              <div className="pointer-events-none absolute right-4 top-4 rounded-full border border-border bg-card px-2 py-0.5 text-[9px] opacity-70">
-                ~{suggestionCounts[c.id] ?? 0} matching entries
+              <div className="pointer-events-none absolute right-5 bottom-5 rounded-full border border-border bg-card px-2 py-0.5 text-[9px] opacity-70">
+                {suggestionCounts[c.id] ?? 0} matching entries
               </div>
             </div>
           ))}

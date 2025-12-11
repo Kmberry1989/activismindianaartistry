@@ -32,9 +32,7 @@ export default function SearchPageClient() {
           placeholder="Try BLM, climate, murals, Indianapolis..."
           className="mt-2 w-full rounded-xl border border-border bg-background px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-ring"
         />
-        <div className="mt-2 text-[11px] opacity-60">
-          This page is additive and does not change your homepage.
-        </div>
+
       </div>
 
       {!query.trim() ? (
