@@ -88,9 +88,10 @@ export default function EventsPageClient({
                     className="rounded-2xl border border-border bg-card p-5 shadow-sm text-card-foreground"
                   >
                     <div className="flex items-start justify-between gap-3">
-                      <h3 className="text-base font-semibold tracking-tight">
-                        {e.title}
-                      </h3>
+                      <div 
+                    className="text-muted-foreground text-sm leading-relaxed"
+                    dangerouslySetInnerHTML={{ __html: e.description }}
+                  />    </h3>
                       {e.eventType ? (
                         <span className="rounded-full border border-border bg-muted px-2 py-0.5 text-[9px]">
                           {e.eventType}
@@ -104,52 +105,53 @@ export default function EventsPageClient({
                     </div>
 
                     {(e.city || e.state || e.venue) ? (
-                      <div className="mt-1 text-[11px] opacity-60">
-                        {[e.venue, e.city, e.state].filter(Boolean).join(" • ")}
-                      </div>
-                    ) : null}
+                    <div className="mt-1 text-[11px] opacity-60">
+                      {[e.venue, e.city, e.state].filter(Boolean).join(" • ")}
+                    </div>
+                  ) : null}
 
-                    {e.description ? (
-                      <div
-                        className="mt-3 text-sm opacity-80"
-                        dangerouslySetInnerHTML={{ __html: e.description }}
-                      />
-                    ) : null}
+                {e.description ? (
+                  <div
+                    className="mt-3 text-sm opacity-80"
+                    dangerouslySetInnerHTML={{ __html: e.description }}
+                  />
+                ) : null}
 
-                    {e.causeTags?.length ? (
-                      <div className="mt-3 flex flex-wrap gap-2">
-                        {e.causeTags.map(c => (
-                          <span
-                            key={`${e.id}-${c}`}
-                            className="rounded-full border border-border bg-card px-2 py-0.5 text-[10px] opacity-70"
-                          >
-                            {c}
-                          </span>
-                        ))}
-                      </div>
-                    ) : null}
-
-                    {e.url ? (
-                      <a
-                        href={e.url}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="mt-4 inline-block text-xs font-medium underline underline-offset-4"
+                {e.causeTags?.length ? (
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {e.causeTags.map(c => (
+                      <span
+                        key={`${e.id}-${c}`}
+                        className="rounded-full border border-border bg-card px-2 py-0.5 text-[10px] opacity-70"
                       >
-                        Event link
-                      </a>
-                    ) : (
-                      <div className="mt-4 text-[10px] opacity-50">
-                        Link pending
-                      </div>
-                    )}
-                  </article>
+                        {c}
+                      </span>
+                    ))}
+                  </div>
+                ) : null}
+
+                {e.url ? (
+                  <a
+                    href={e.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mt-4 inline-block text-xs font-medium underline underline-offset-4"
+                  >
+                    Event link
+                  </a>
+                ) : (
+                  <div className="mt-4 text-[10px] opacity-50">
+                    Link pending
+                  </div>
+                )}
+              </article>
                 ))}
-              </div>
+            </div>
             </section>
-          ))}
-        </div>
-      )}
+      ))}
     </div>
+  )
+}
+    </div >
   );
 }
