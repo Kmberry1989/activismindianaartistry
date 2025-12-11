@@ -45,11 +45,8 @@ export default function EventsPageClient({
       <div className="mb-6">
         <h1 className="text-3xl font-bold tracking-tight">Events</h1>
         <p className="mt-1 text-sm opacity-80">
-          A living calendar of activist art happenings across Indiana.
+          A living calendar of art happenings across Indiana.
         </p>
-        <div className="mt-2 text-[11px] opacity-60">
-          This is a new page that won’t alter your homepage layout.
-        </div>
       </div>
 
       <div className="mb-6 grid gap-3 rounded-2xl border border-border bg-card p-4 shadow-sm sm:grid-cols-[1fr,auto] sm:items-end text-card-foreground">
@@ -113,9 +110,10 @@ export default function EventsPageClient({
                     ) : null}
 
                     {e.description ? (
-                      <p className="mt-3 text-sm opacity-80">
-                        {e.description}
-                      </p>
+                      <div
+                        className="mt-3 text-sm opacity-80"
+                        dangerouslySetInnerHTML={{ __html: e.description }}
+                      />
                     ) : null}
 
                     {e.causeTags?.length ? (
