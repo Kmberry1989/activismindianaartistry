@@ -16,6 +16,8 @@ import {
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { SmoothScroller } from "@/components/smooth-scroller"; // Import this
+import { Header } from "@/components/header";
+import { Footer } from "@/components/footer";
 // Default Fonts
 const inter = Inter({
   variable: "--font-inter",
@@ -127,7 +129,11 @@ export default function RootLayout({
         >
           <SmoothScroller />
           <div className="noise-overlay" />
-          {children}
+          <Header />
+          <main className="min-h-screen pt-24 pb-12">
+            {children}
+          </main>
+          <Footer />
         </ThemeProvider>
       </body>
     </html>

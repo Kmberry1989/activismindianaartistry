@@ -85,7 +85,7 @@ export default function SubmissionForm() {
         </p>
       </div>
 
-      <div className="rounded-2xl border border-black/10 bg-white p-5 shadow-sm space-y-5">
+      <div className="rounded-2xl border border-border bg-card p-5 shadow-sm space-y-5 text-card-foreground">
         <div>
           <div className="text-xs font-semibold mb-2">Submission type</div>
           <div className="grid gap-2 sm:grid-cols-2">
@@ -94,7 +94,7 @@ export default function SubmissionForm() {
                 key={t.id}
                 className={[
                   "flex cursor-pointer items-start gap-2 rounded-xl border p-3",
-                  type === t.id ? "border-black/40 bg-black/5" : "border-black/10 bg-white"
+                  type === t.id ? "border-primary/40 bg-primary/5" : "border-border bg-card"
                 ].join(" ")}
               >
                 <input
@@ -114,7 +114,7 @@ export default function SubmissionForm() {
         </div>
 
         {activeHelp ? (
-          <div className="rounded-xl border border-black/10 bg-black/5 p-3 text-[11px] opacity-80">
+          <div className="rounded-xl border border-border bg-muted p-3 text-[11px] opacity-80">
             {activeHelp}
           </div>
         ) : null}
@@ -125,7 +125,7 @@ export default function SubmissionForm() {
             <input
               value={artistName}
               onChange={(e) => setArtistName(e.target.value)}
-              className="w-full rounded-xl border border-black/10 px-3 py-2 text-sm outline-none"
+              className="w-full rounded-xl border border-border bg-background px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-ring"
               placeholder="e.g., The Eighteen Art Collective"
             />
           </label>
@@ -135,7 +135,7 @@ export default function SubmissionForm() {
             <input
               value={artworkTitle}
               onChange={(e) => setArtworkTitle(e.target.value)}
-              className="w-full rounded-xl border border-black/10 px-3 py-2 text-sm outline-none"
+              className="w-full rounded-xl border border-border bg-background px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-ring"
               placeholder="Optional"
             />
           </label>
@@ -147,7 +147,7 @@ export default function SubmissionForm() {
             <input
               value={city}
               onChange={(e) => setCity(e.target.value)}
-              className="w-full rounded-xl border border-black/10 px-3 py-2 text-sm outline-none"
+              className="w-full rounded-xl border border-border bg-background px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-ring"
               placeholder="Optional"
             />
           </label>
@@ -157,7 +157,7 @@ export default function SubmissionForm() {
             <input
               value={state}
               onChange={(e) => setState(e.target.value)}
-              className="w-full rounded-xl border border-black/10 px-3 py-2 text-sm outline-none"
+              className="w-full rounded-xl border border-border bg-background px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-ring"
               placeholder="IN"
             />
           </label>
@@ -175,7 +175,7 @@ export default function SubmissionForm() {
                   onClick={() => toggleCause(c)}
                   className={[
                     "rounded-full border px-2 py-0.5 text-[10px]",
-                    active ? "border-black/40 bg-black text-white" : "border-black/10 bg-white hover:bg-black/5"
+                    active ? "border-primary/40 bg-primary text-primary-foreground" : "border-border bg-card hover:bg-muted"
                   ].join(" ")}
                 >
                   {c}
@@ -193,7 +193,7 @@ export default function SubmissionForm() {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             rows={6}
-            className="w-full rounded-xl border border-black/10 px-3 py-2 text-sm outline-none"
+            className="w-full rounded-xl border border-border bg-background px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-ring"
             placeholder="Tell us what should be added/changed and why it matters."
           />
         </label>
@@ -206,7 +206,7 @@ export default function SubmissionForm() {
             value={urlsRaw}
             onChange={(e) => setUrlsRaw(e.target.value)}
             rows={3}
-            className="w-full rounded-xl border border-black/10 px-3 py-2 text-xs outline-none"
+            className="w-full rounded-xl border border-border bg-background px-3 py-2 text-xs outline-none focus:ring-2 focus:ring-ring"
             placeholder="Official sites, news articles, social posts, etc."
           />
         </label>
@@ -215,7 +215,7 @@ export default function SubmissionForm() {
           <button
             type="button"
             onClick={submit}
-            className="rounded-xl bg-black px-4 py-2 text-xs font-semibold text-white hover:opacity-95"
+            className="rounded-xl bg-primary px-4 py-2 text-xs font-semibold text-primary-foreground hover:opacity-95"
           >
             Submit
           </button>
@@ -225,7 +225,7 @@ export default function SubmissionForm() {
         </div>
 
         {doneId ? (
-          <div className="rounded-xl border border-black/10 bg-white p-3 text-xs">
+          <div className="rounded-xl border border-border bg-card p-3 text-xs">
             Submission received locally: <span className="font-mono">{doneId}</span>
           </div>
         ) : null}
