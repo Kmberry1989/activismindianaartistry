@@ -27,6 +27,7 @@ export interface LessonPlan {
     actionLink?: string;
     actionLabel?: string;
     quiz?: Question[];
+    readingMaterial?: { title: string; url: string; }[];
 }
 
 interface LessonPlanCardProps {
@@ -136,6 +137,27 @@ export function LessonPlanCard({ plan }: LessonPlanCardProps) {
                                 ))}
                             </div>
                         </div>
+                        {plan.readingMaterial && plan.readingMaterial.length > 0 && (
+                            <div className="border-t pt-4">
+                                <h4 className="font-bold text-sm uppercase tracking-wider mb-2 text-primary">
+                                    Reading Material
+                                </h4>
+                                <ul className="space-y-2">
+                                    {plan.readingMaterial.map((item, idx) => (
+                                        <li key={idx}>
+                                            <a
+                                                href={item.url}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="text-sm text-blue-600 hover:underline flex items-center gap-2"
+                                            >
+                                                📄 {item.title}
+                                            </a>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
                         <div className="pt-8 flex flex-col gap-3">
                             {plan.quiz && (
                                 <Button onClick={() => setQuizOpen(true)} className="w-full" variant="default">

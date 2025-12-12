@@ -14,396 +14,419 @@ import {
 import { Filter } from "lucide-react";
 
 // Lesson Plan Data
-const LESSON_PLANS: LessonPlan[] = [
-  {
-    title: "Art as Protest",
+{
+  title: "Art as Protest",
     grade: "Grades 9-12",
-    standard: "Visual Arts / Civics",
-    standardCode: "VA:Cr1.1.Ia, CV.2.3",
-    summary:
-      "Analyze how the 'Black Lives Matter' murals on Indiana Avenue served as both artistic expression and political assembly.",
+      standard: "Visual Arts / Civics",
+        standardCode: "VA:Cr1.1.Ia, CV.2.3",
+          summary:
+  "Analyze how the 'Black Lives Matter' murals on Indiana Avenue served as both artistic expression and political assembly.",
     objectives: [
       "Define 'protest art' and identify its key characteristics.",
       "Analyze the historical significance of Indiana Avenue.",
       "Debate the effectiveness of temporary public art vs. permanent monuments.",
     ],
-    procedures: [
-      "1. Introduction (10 min): Show images of the 2020 BLM murals in Indianapolis.",
-      "2. Context (15 min): Read background on Indiana Avenue's history as a Black cultural hub.",
-      "3. Analysis (20 min): Small groups select one letter from the mural and research the artist.",
-      "4. Discussion (15 min): Why did the artists choose this specific location? What happened to the mural?",
-    ],
-    quiz: [
-      {
-        id: "ap1",
-        text: "What is the primary goal of 'protest art'?",
-        options: [
-          "To make a lot of money",
-          "To challenge power structures and inspire social change",
-          "To decorate museums",
-          "To look pretty"
+      procedures: [
+        "1. Introduction (10 min): Show images of the 2020 BLM murals in Indianapolis.",
+        "2. Context (15 min): Read background on Indiana Avenue's history as a Black cultural hub.",
+        "3. Analysis (20 min): Small groups select one letter from the mural and research the artist.",
+        "4. Discussion (15 min): Why did the artists choose this specific location? What happened to the mural?",
+      ],
+        readingMaterial: [
+          { title: "The History of Indiana Avenue", url: "https://indyencyclopedia.org/indiana-avenue/" },
+          { title: "Black Lives Matter Mural Project", url: "https://ganggangculture.com/projects/" }
         ],
-        correctIndex: 1,
-        explanation: "Protest art uses creativity to draw attention to injustice and rally people for a cause."
-      },
-      {
-        id: "ap2",
-        text: "Why is Indiana Avenue historically significant?",
-        options: [
-          "It was where the first skyscraper was built",
-          "It was a major hub for Black culture and jazz in Indianapolis",
-          "It is the widest street in the city",
-          "It has the most stoplights"
-        ],
-        correctIndex: 1,
-        explanation: "Indiana Avenue was a thriving center of Black commerce and culture, making the BLM mural location deeply symbolic."
-      },
-      {
-        id: "ap3",
-        text: "What is a unique power of 'temporary' public art (like the mural)?",
-        options: [
-          "It lasts forever",
-          "It captures a specific moment in time and urgency",
-          "It is cheaper than bronze",
-          "No one notices it"
-        ],
-        correctIndex: 1,
-        explanation: "Temporary art responds immediately to current events, capturing the raw emotion of a specific moment."
-      }
-    ]
-  },
-  {
-    title: "Monuments & Memory",
+          quiz: [
+            {
+              id: "ap1",
+              text: "What is the primary goal of 'protest art'?",
+              options: [
+                "To make a lot of money",
+                "To challenge power structures and inspire social change",
+                "To decorate museums",
+                "To look pretty"
+              ],
+              correctIndex: 1,
+              explanation: "Protest art uses creativity to draw attention to injustice and rally people for a cause."
+            },
+            {
+              id: "ap2",
+              text: "Why is Indiana Avenue historically significant?",
+              options: [
+                "It was where the first skyscraper was built",
+                "It was a major hub for Black culture and jazz in Indianapolis",
+                "It is the widest street in the city",
+                "It has the most stoplights"
+              ],
+              correctIndex: 1,
+              explanation: "Indiana Avenue was a thriving center of Black commerce and culture, making the BLM mural location deeply symbolic."
+            },
+            {
+              id: "ap3",
+              text: "What is a unique power of 'temporary' public art (like the mural)?",
+              options: [
+                "It lasts forever",
+                "It captures a specific moment in time and urgency",
+                "It is cheaper than bronze",
+                "No one notices it"
+              ],
+              correctIndex: 1,
+              explanation: "Temporary art responds immediately to current events, capturing the raw emotion of a specific moment."
+            }
+          ]
+},
+{
+  title: "Monuments & Memory",
     grade: "Grades 11-12",
-    standard: "History / Visual Arts",
-    standardCode: "USH.2.9, VA:Re7.2.Ia",
-    summary:
-      "Critically examine the role of public monuments in shaping historical narrative and collective memory, focusing on the debate around Confederate statues.",
+      standard: "History / Visual Arts",
+        standardCode: "USH.2.9, VA:Re7.2.Ia",
+          summary:
+  "Critically examine the role of public monuments in shaping historical narrative and collective memory, focusing on the debate around Confederate statues.",
     objectives: [
       "Analyze the controversy surrounding the removal or recontextualization of historical monuments.",
       "Design a proposal for a new monument representing an underrepresented narrative in their community.",
       "Evaluate criteria for what events or figures deserve public commemoration.",
     ],
-    procedures: [
-      "1. Lecture (15 min): History of monument erection waves (e.g., Jim Crow era).",
-      "2. Case Study (15 min): Examine a specific recent removal or contextualization project.",
-      "3. Design Charette (25 min): Students sketch a monument for a 'hidden history' figure.",
-      "4. Presentation (5 min): Pitch the new monument concept.",
-    ],
-    quiz: [
-      {
-        id: "m1",
-        text: "Which of the following best describes 'Monumentality' in the context of art activism?",
-        options: [
-          "The physical size of a statue",
-          "The power dynamics inherent in who gets honored in public space",
-          "The cost of building a monument",
-          "The use of marble vs. bronze"
+      procedures: [
+        "1. Lecture (15 min): History of monument erection waves (e.g., Jim Crow era).",
+        "2. Case Study (15 min): Examine a specific recent removal or contextualization project.",
+        "3. Design Charette (25 min): Students sketch a monument for a 'hidden history' figure.",
+        "4. Presentation (5 min): Pitch the new monument concept.",
+      ],
+        readingMaterial: [
+          { title: "Mellon Foundation: The Monuments Project", url: "https://www.mellon.org/programs-and-grants/the-monuments-project" },
+          { title: "Whose Heritage? Public Symbols of the Confederacy", url: "https://www.splcenter.org/20190201/whose-heritage-public-symbols-confederacy" }
         ],
-        correctIndex: 1,
-        explanation: "Monumentality isn't just about size; it's about the authority and power to decide whose history is permanent."
-      },
-      {
-        id: "m2",
-        text: "Why are many historical monuments currently being re-evaluated?",
-        options: [
-          "They are too old and falling apart",
-          "They often celebrate figures associated with oppression or exclusion",
-          "Bronze is too expensive to maintain",
-          "They are too small to be seen from cars"
-        ],
-        correctIndex: 1,
-        explanation: "Many monuments erected in the past celebrate figures (like Confederates) who fought for oppression, clashing with modern values of equality."
-      },
-      {
-        id: "m3",
-        text: "What is a 'counter-monument'?",
-        options: [
-          "A monument that is buried underground",
-          "A monument that challenges or questions traditional forms of commemoration",
-          "A digital-only monument",
-          "A statue of a horse"
-        ],
-        correctIndex: 1,
-        explanation: "Counter-monuments (like Maya Lin's Vietnam Veterans Memorial) often challenge the traditional 'hero on a pedestal' format to provoke thought."
-      }
-    ]
-  },
-  {
-    title: "Mapping Your Narratives",
+          quiz: [
+            {
+              id: "m1",
+              text: "Which of the following best describes 'Monumentality' in the context of art activism?",
+              options: [
+                "The physical size of a statue",
+                "The power dynamics inherent in who gets honored in public space",
+                "The cost of building a monument",
+                "The use of marble vs. bronze"
+              ],
+              correctIndex: 1,
+              explanation: "Monumentality isn't just about size; it's about the authority and power to decide whose history is permanent."
+            },
+            {
+              id: "m2",
+              text: "Why are many historical monuments currently being re-evaluated?",
+              options: [
+                "They are too old and falling apart",
+                "They often celebrate figures associated with oppression or exclusion",
+                "Bronze is too expensive to maintain",
+                "They are too small to be seen from cars"
+              ],
+              correctIndex: 1,
+              explanation: "Many monuments erected in the past celebrate figures (like Confederates) who fought for oppression, clashing with modern values of equality."
+            },
+            {
+              id: "m3",
+              text: "What is a 'counter-monument'?",
+              options: [
+                "A monument that is buried underground",
+                "A monument that challenges or questions traditional forms of commemoration",
+                "A digital-only monument",
+                "A statue of a horse"
+              ],
+              correctIndex: 1,
+              explanation: "Counter-monuments (like Maya Lin's Vietnam Veterans Memorial) often challenge the traditional 'hero on a pedestal' format to provoke thought."
+            }
+          ]
+},
+{
+  title: "Mapping Your Narratives",
     grade: "Grades 6-8",
-    standard: "Geography / History",
-    standardCode: "6.1.15, VA:Cn11.1.8a",
-    summary:
-      "Students use the Activist Map to identify art in their own neighborhoods and create a 'place-based' biography of their community.",
+      standard: "Geography / History",
+        standardCode: "6.1.15, VA:Cn11.1.8a",
+          summary:
+  "Students use the Activist Map to identify art in their own neighborhoods and create a 'place-based' biography of their community.",
     objectives: [
       "Use reading skills to extract information from a digital map.",
       "Identify 3 examples of public art in their local area.",
       "Explain how geography influences the type of art found in a community.",
     ],
-    procedures: [
-      "1. Exploration (15 min): Students explore the 'Activist Map' on the website.",
-      "2. Scavenger Hunt (20 min): Find the closest artwork to their school/home.",
-      "3. Creation (20 min): Sketch a proposal for a new artwork in a specific empty lot or wall.",
-      "4. Presentation (10 min): Explain why that location needs art.",
-    ],
-    quiz: [
-      {
-        id: "map1",
-        text: "What does 'place-based biography' mean?",
-        options: [
-          "A biography about a famous traveler",
-          "Understanding a community by studying its physical locations and landmarks",
-          "A map with no names",
-          "A history book"
+      procedures: [
+        "1. Exploration (15 min): Students explore the 'Activist Map' on the website.",
+        "2. Scavenger Hunt (20 min): Find the closest artwork to their school/home.",
+        "3. Creation (20 min): Sketch a proposal for a new artwork in a specific empty lot or wall.",
+        "4. Presentation (10 min): Explain why that location needs art.",
+      ],
+        readingMaterial: [
+          { title: "Project for Public Spaces: What is Placemaking?", url: "https://www.pps.org/article/what-is-placemaking" }
         ],
-        correctIndex: 1,
-        explanation: "Place-based biography tells the story of a community through the physical spaces people inhabit."
-      },
-      {
-        id: "map2",
-        text: "Why might an artist choose a specific location for their work?",
-        options: [
-          "It was the only wall available",
-          "To connect the art's message with the history or people of that spot",
-          "They forgot where they were",
-          "It was sunny there"
-        ],
-        correctIndex: 1,
-        explanation: "Site-specific art uses the location itself to help tell the story or strengthen the message."
-      },
-      {
-        id: "map3",
-        text: "What information can you often find on a digital map besides roads?",
-        options: [
-          "The future",
-          "Cultural landmarks, art, and historical sites",
-          "What everyone is thinking",
-          "Missing socks"
-        ],
-        correctIndex: 1,
-        explanation: "Digital maps often layer cultural data like art and history on top of geography."
-      }
-    ]
-  },
-  {
-    title: "The Power of Posters",
+          quiz: [
+            {
+              id: "map1",
+              text: "What does 'place-based biography' mean?",
+              options: [
+                "A biography about a famous traveler",
+                "Understanding a community by studying its physical locations and landmarks",
+                "A map with no names",
+                "A history book"
+              ],
+              correctIndex: 1,
+              explanation: "Place-based biography tells the story of a community through the physical spaces people inhabit."
+            },
+            {
+              id: "map2",
+              text: "Why might an artist choose a specific location for their work?",
+              options: [
+                "It was the only wall available",
+                "To connect the art's message with the history or people of that spot",
+                "They forgot where they were",
+                "It was sunny there"
+              ],
+              correctIndex: 1,
+              explanation: "Site-specific art uses the location itself to help tell the story or strengthen the message."
+            },
+            {
+              id: "map3",
+              text: "What information can you often find on a digital map besides roads?",
+              options: [
+                "The future",
+                "Cultural landmarks, art, and historical sites",
+                "What everyone is thinking",
+                "Missing socks"
+              ],
+              correctIndex: 1,
+              explanation: "Digital maps often layer cultural data like art and history on top of geography."
+            }
+          ]
+},
+{
+  title: "The Power of Posters",
     grade: "Grades 6-8",
-    standard: "Visual Arts / Social Studies",
-    standardCode: "8.1.25, VA:Cr3.1.7a",
-    summary:
-      "Explore the history of political posters from the WPA to modern movements, and learn how graphic design can influence public opinion.",
+      standard: "Visual Arts / Social Studies",
+        standardCode: "8.1.25, VA:Cr3.1.7a",
+          summary:
+  "Explore the history of political posters from the WPA to modern movements, and learn how graphic design can influence public opinion.",
     objectives: [
       "Analyze the effectiveness of visual hierarchy, typography, and color in propaganda.",
       "Create a persuasive poster for a specific school or community issue.",
       "Use limited color palettes to create high-impact imagery.",
     ],
-    procedures: [
-      "1. Visual History (15 min): Slideshow of iconic political posters (WPA, WWII, Civil Rights).",
-      "2. Analysis (10 min): What makes these images 'stick'? (Simple text, bold colors).",
-      "3. Sketching (20 min): Draft 3 thumbnail sketches for a school issue topic.",
-      "4. Final Execution (15 min): Create a final poster design using markers or digital tools.",
-    ],
-    quiz: [
-      {
-        id: "p1",
-        text: "Why do political posters often use limited color palettes (like just Red, Black, and White)?",
-        options: [
-          "It was cheaper to print",
-          "High visual impact and immediate readability",
-          "Artists ran out of paint",
-          "It looks retro"
+      procedures: [
+        "1. Visual History (15 min): Slideshow of iconic political posters (WPA, WWII, Civil Rights).",
+        "2. Analysis (10 min): What makes these images 'stick'? (Simple text, bold colors).",
+        "3. Sketching (20 min): Draft 3 thumbnail sketches for a school issue topic.",
+        "4. Final Execution (15 min): Create a final poster design using markers or digital tools.",
+      ],
+        readingMaterial: [
+          { title: "Smithsonian: Posters from the WPA", url: "https://www.loc.gov/collections/works-progress-administration-posters/about-this-collection/" }
         ],
-        correctIndex: 1,
-        explanation: "High contrast colors catch the eye instantly and make the message readable from a distance."
-      },
-      {
-        id: "p2",
-        text: "What is 'Visual Hierarchy'?",
-        options: [
-          "Arranging elements so the most important info is seen first",
-          "Putting images at the top only",
-          "Using the biggest font possible",
-          "Sorting colors by rainbow order"
-        ],
-        correctIndex: 0,
-        explanation: "Visual hierarchy guides the viewer's eye to the most critical part of the message first (like a headline or call to action)."
-      }
-    ]
-  },
-  {
-    title: "Protest in Print",
+          quiz: [
+            {
+              id: "p1",
+              text: "Why do political posters often use limited color palettes (like just Red, Black, and White)?",
+              options: [
+                "It was cheaper to print",
+                "High visual impact and immediate readability",
+                "Artists ran out of paint",
+                "It looks retro"
+              ],
+              correctIndex: 1,
+              explanation: "High contrast colors catch the eye instantly and make the message readable from a distance."
+            },
+            {
+              id: "p2",
+              text: "What is 'Visual Hierarchy'?",
+              options: [
+                "Arranging elements so the most important info is seen first",
+                "Putting images at the top only",
+                "Using the biggest font possible",
+                "Sorting colors by rainbow order"
+              ],
+              correctIndex: 0,
+              explanation: "Visual hierarchy guides the viewer's eye to the most critical part of the message first (like a headline or call to action)."
+            }
+          ]
+},
+{
+  title: "Protest in Print",
     grade: "Grades 5-12",
-    standard: "Media Arts / Literacy",
-    standardCode: "MA:Cr3.1.8a, 8.W.3.2",
-    summary:
-      "Learn the history of zines as a tool for underground communication and create a digital zine to advocate for a cause.",
+      standard: "Media Arts / Literacy",
+        standardCode: "MA:Cr3.1.8a, 8.W.3.2",
+          summary:
+  "Learn the history of zines as a tool for underground communication and create a digital zine to advocate for a cause.",
     objectives: [
       "Define 'zine' and explain their historical role in activism (e.g., riot grrrl, punk scene).",
       "Combine text and imagery to create a persuasive message.",
       "Use the digital Zine Builder tool to publish a mini-magazine.",
     ],
-    procedures: [
-      "1. History (10 min): Brief slideshow on the history of DIY publishing.",
-      "2. Brainstorming (10 min): Pick a cause you care about (e.g., recycling, bullying, parks).",
-      "3. Workshop (25 min): Use the 'Zine Builder' on this site to select standard layouts and add text/stamps.",
-      "4. Share (10 min): Swap digital zines with a partner and identify the main argument.",
-    ],
-    actionLink: "/zine/v2",
-    actionLabel: "Open Zine Builder",
-    quiz: [
-      {
-        id: "z1",
-        text: "What is a 'Zine' short for?",
-        options: [
-          "Cuisine",
-          "Magazine (or Fanzine)",
-          "Zenith",
-          "Zone"
-        ],
-        correctIndex: 1,
-        explanation: "Zine comes from Magazine or Fanzine – small, self-published booklets often made with photocopiers."
-      },
-      {
-        id: "z2",
-        text: "Why were zines important for the Riot Grrrl movement in the 1990s?",
-        options: [
-          "They were sold in supermarkets",
-          "They allowed women to share stories uncensored by mainstream media",
-          "They were digital only",
-          "They were expensive to make"
-        ],
-        correctIndex: 1,
-        explanation: "Zines provided a safe, uncensored space for women to discuss feminism, music, and politics without corporate control."
-      },
-      {
-        id: "z3",
-        text: "Which of these is a key characteristic of Zine culture?",
-        options: [
-          "DIY (Do It Yourself) Ethos",
-          "Mass production",
-          "Corporate sponsorship",
-          "Glossy paper"
-        ],
-        correctIndex: 0,
-        explanation: "DIY (Do It Yourself) is the heart of zine culture – making things yourself with whatever tools you have."
-      }
-    ]
-  },
-  {
-    title: "Eco-Art Activism",
+      procedures: [
+        "1. History (10 min): Brief slideshow on the history of DIY publishing.",
+        "2. Brainstorming (10 min): Pick a cause you care about (e.g., recycling, bullying, parks).",
+        "3. Workshop (25 min): Use the 'Zine Builder' on this site to select standard layouts and add text/stamps.",
+        "4. Share (10 min): Swap digital zines with a partner and identify the main argument.",
+      ],
+        actionLink: "/zine/v2",
+          actionLabel: "Open Zine Builder",
+            readingMaterial: [
+              { title: "A Brief History of Zines", url: "https://www.mentalfloss.com/article/88911/brief-history-zines" },
+              { title: "Duke University: Zine History", url: "https://guides.library.duke.edu/zines/history" }
+            ],
+              quiz: [
+                {
+                  id: "z1",
+                  text: "What is a 'Zine' short for?",
+                  options: [
+                    "Cuisine",
+                    "Magazine (or Fanzine)",
+                    "Zenith",
+                    "Zone"
+                  ],
+                  correctIndex: 1,
+                  explanation: "Zine comes from Magazine or Fanzine – small, self-published booklets often made with photocopiers."
+                },
+                {
+                  id: "z2",
+                  text: "Why were zines important for the Riot Grrrl movement in the 1990s?",
+                  options: [
+                    "They were sold in supermarkets",
+                    "They allowed women to share stories uncensored by mainstream media",
+                    "They were digital only",
+                    "They were expensive to make"
+                  ],
+                  correctIndex: 1,
+                  explanation: "Zines provided a safe, uncensored space for women to discuss feminism, music, and politics without corporate control."
+                },
+                {
+                  id: "z3",
+                  text: "Which of these is a key characteristic of Zine culture?",
+                  options: [
+                    "DIY (Do It Yourself) Ethos",
+                    "Mass production",
+                    "Corporate sponsorship",
+                    "Glossy paper"
+                  ],
+                  correctIndex: 0,
+                  explanation: "DIY (Do It Yourself) is the heart of zine culture – making things yourself with whatever tools you have."
+                }
+              ]
+},
+{
+  title: "Eco-Art Activism",
     grade: "Grades 3-5",
-    standard: "Science / Art",
-    standardCode: "4.ESS.4, VA:Cr2.3.4a",
-    summary:
-      "Connect environmental stewardship with creativity by building sculptures from recycled materials to raise awareness about waste.",
+      standard: "Science / Art",
+        standardCode: "4.ESS.4, VA:Cr2.3.4a",
+          summary:
+  "Connect environmental stewardship with creativity by building sculptures from recycled materials to raise awareness about waste.",
     objectives: [
       "Identify recyclable materials vs. trash.",
       "Create a sculpture or collage entirely from found/recycled materials.",
       "Explain the message of their artwork regarding the environment.",
     ],
-    procedures: [
-      "1. Trash Talk (10 min): Discuss where trash goes and the importance of reusing.",
-      "2. Material Hunt (10 min): Sort through clean provided recyclables (cardboard, caps, bottles).",
-      "3. Building (25 min): Use tape and glue to assemble an 'Eco-Critter' or message board.",
-      "4. Gallery Walk (15 min): View classmates' work and guess their environmental message.",
-    ],
-    quiz: [
-      {
-        id: "eco1",
-        text: "What is the main goal of 'Eco-Art Activism'?",
-        options: [
-          "To use the most expensive paint",
-          "To raise awareness about environmental issues using creativity",
-          "To paint pictures of cars",
-          "To build houses"
+      procedures: [
+        "1. Trash Talk (10 min): Discuss where trash goes and the importance of reusing.",
+        "2. Material Hunt (10 min): Sort through clean provided recyclables (cardboard, caps, bottles).",
+        "3. Building (25 min): Use tape and glue to assemble an 'Eco-Critter' or message board.",
+        "4. Gallery Walk (15 min): View classmates' work and guess their environmental message.",
+      ],
+        readingMaterial: [
+          { title: "NASA Climate Kids: Recycling", url: "https://climatekids.nasa.gov/recycle/" }
         ],
-        correctIndex: 1,
-        explanation: "Eco-artists use their work to make people think about nature, waste, and protecting our planet."
-      },
-      {
-        id: "eco2",
-        text: "Which of these materials would be best for a recycled art sculpture?",
-        options: [
-          "A brand new sheet of paper",
-          "Clean cardboard and bottle caps",
-          "Rotten food",
-          "Glass sharks"
-        ],
-        correctIndex: 1,
-        explanation: "Cardboard and plastic caps are common trash items that are clean and easy to build with."
-      },
-      {
-        id: "eco3",
-        text: "What happens to most trash if we don't recycle or reuse it?",
-        options: [
-          "It disappears",
-          "It goes into a landfill and stays there for a long time",
-          "It turns into gold",
-          "It flies into space"
-        ],
-        correctIndex: 1,
-        explanation: "Trash in landfills can take hundreds of years to decompose, which is why reusing is so important."
-      }
-    ]
-  },
-  {
-    title: "Colors of Culture",
+          quiz: [
+            {
+              id: "eco1",
+              text: "What is the main goal of 'Eco-Art Activism'?",
+              options: [
+                "To use the most expensive paint",
+                "To raise awareness about environmental issues using creativity",
+                "To paint pictures of cars",
+                "To build houses"
+              ],
+              correctIndex: 1,
+              explanation: "Eco-artists use their work to make people think about nature, waste, and protecting our planet."
+            },
+            {
+              id: "eco2",
+              text: "Which of these materials would be best for a recycled art sculpture?",
+              options: [
+                "A brand new sheet of paper",
+                "Clean cardboard and bottle caps",
+                "Rotten food",
+                "Glass sharks"
+              ],
+              correctIndex: 1,
+              explanation: "Cardboard and plastic caps are common trash items that are clean and easy to build with."
+            },
+            {
+              id: "eco3",
+              text: "What happens to most trash if we don't recycle or reuse it?",
+              options: [
+                "It disappears",
+                "It goes into a landfill and stays there for a long time",
+                "It turns into gold",
+                "It flies into space"
+              ],
+              correctIndex: 1,
+              explanation: "Trash in landfills can take hundreds of years to decompose, which is why reusing is so important."
+            }
+          ]
+},
+{
+  title: "Colors of Culture",
     grade: "Grades 4-5",
-    standard: "Social Studies",
-    standardCode: "4.1.18, VA:Re7.2.4a",
-    summary:
-      "Explore how artists like The Eighteen Art Collective use color to represent identity and history in Indianapolis.",
+      standard: "Social Studies",
+        standardCode: "4.1.18, VA:Re7.2.4a",
+          summary:
+  "Explore how artists like The Eighteen Art Collective use color to represent identity and history in Indianapolis.",
     objectives: [
       "Identify primary and secondary colors in a mural.",
       "Discuss how colors can represent feelings or cultural identity.",
       "Learn about 'The Eighteen Art Collective'.",
     ],
-    procedures: [
-      "1. Color Walk (10 min): Look at images of 'The Eighteen' murals.",
-      "2. Vocabulary (10 min): Define 'Collective' and 'Symbolism'.",
-      "3. Application (20 min): Students pick 3 colors that represent themselves and create a mini-flag.",
-      "4. Reflection (10 min): Share flags and explain color choices.",
-    ],
-    quiz: [
-      {
-        id: "col1",
-        text: "Who are 'The Eighteen Art Collective'?",
-        options: [
-          "A band",
-          "The group of Black artists who painted the Black Lives Matter mural in Indy",
-          "A soccer team",
-          "18 different paint colors"
+      procedures: [
+        "1. Color Walk (10 min): Look at images of 'The Eighteen' murals.",
+        "2. Vocabulary (10 min): Define 'Collective' and 'Symbolism'.",
+        "3. Application (20 min): Students pick 3 colors that represent themselves and create a mini-flag.",
+        "4. Reflection (10 min): Share flags and explain color choices.",
+      ],
+        readingMaterial: [
+          { title: "Meet The Eighteen Art Collective", url: "https://18artcollective.com/" }
         ],
-        correctIndex: 1,
-        explanation: "The Eighteen Art Collective formed to create the historic mural on Indiana Avenue."
-      },
-      {
-        id: "col2",
-        text: "Which of these are Primary Colors?",
-        options: [
-          "Green, Orange, Purple",
-          "Red, Yellow, Blue",
-          "Black, White, Gray",
-          "Pink, Teal, Maroon"
-        ],
-        correctIndex: 1,
-        explanation: "Red, Yellow, and Blue are primary colors because they can be mixed to make all other colors."
-      },
-      {
-        id: "col3",
-        text: "What does 'Symbolism' mean in art?",
-        options: [
-          "Signing your name",
-          "Using an image or color to represent an idea or feeling",
-          "Painting very fast",
-          "Drawings of cymbals"
-        ],
-        correctIndex: 1,
-        explanation: "Symbolism is when artists use visual clues (like a heart for love) to tell a deeper story."
-      }
-    ]
-  },
+          quiz: [
+            {
+              id: "col1",
+              text: "Who are 'The Eighteen Art Collective'?",
+              options: [
+                "A band",
+                "The group of Black artists who painted the Black Lives Matter mural in Indy",
+                "A soccer team",
+                "18 different paint colors"
+              ],
+              correctIndex: 1,
+              explanation: "The Eighteen Art Collective formed to create the historic mural on Indiana Avenue."
+            },
+            {
+              id: "col2",
+              text: "Which of these are Primary Colors?",
+              options: [
+                "Green, Orange, Purple",
+                "Red, Yellow, Blue",
+                "Black, White, Gray",
+                "Pink, Teal, Maroon"
+              ],
+              correctIndex: 1,
+              explanation: "Red, Yellow, and Blue are primary colors because they can be mixed to make all other colors."
+            },
+            {
+              id: "col3",
+              text: "What does 'Symbolism' mean in art?",
+              options: [
+                "Signing your name",
+                "Using an image or color to represent an idea or feeling",
+                "Painting very fast",
+                "Drawings of cymbals"
+              ],
+              correctIndex: 1,
+              explanation: "Symbolism is when artists use visual clues (like a heart for love) to tell a deeper story."
+            }
+          ]
+},
 ];
 
 const GLOSSARY_TERMS: GlossaryTerm[] = [
